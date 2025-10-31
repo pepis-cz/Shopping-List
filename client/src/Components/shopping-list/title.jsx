@@ -2,9 +2,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function Title(title = 'List', archived = false) {
-    const [editing, setEditing] = useState(false);
-    const [value, setValue] = useState(title);
+//dtoIn.title, dtoIn.archived
+function Title(list) {
+    const [editing, setEditing] = useState(list.archived ?? false);
+    const [title, setTitle] = useState(list.title ?? 'New List');
 
     const saveTitle = () => {setEditing(false)}
 
@@ -22,8 +23,8 @@ function Title(title = 'List', archived = false) {
                         <Form.Control
                             type = 'text'
                             placeholder = 'Name'
-                            value={value}
-                            onChange = {(e) => setValue(e.target.value)}
+                            value={title}
+                            onChange = {(e) => setTitle(e.target.value)}
                             onBlur = {saveTitle}
                             onKeyDown = {handleKeyDown}
                             autoFocus
@@ -32,7 +33,7 @@ function Title(title = 'List', archived = false) {
                 </>
             ) : (
                 <>
-                    <h1 className = 'title'>{value}</h1>
+                    <h1 className = 'title'>{title}</h1>
                     {archived ? (
                         <h2 className = 'archived'>Archived</h2>
                     ) : (
