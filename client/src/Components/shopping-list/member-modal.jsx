@@ -12,12 +12,12 @@ function MemberModal({show = false, onHide = () => {}, list}) {
 
                 <Modal.Body>
                     <ListGroup>
-                        <ListGroup.Item>{list.owner} *Owner*</ListGroup.Item>
+                        <ListGroup.Item>{list.owner} Owner</ListGroup.Item>
 
                         {list?.members?.map((member) => {
                             <ListGroup.Item key = {member.id}>
                                 <>
-                                    {member.name}
+                                    {member.email}
                                 </>
 
                                 <>
@@ -34,6 +34,7 @@ function MemberModal({show = false, onHide = () => {}, list}) {
                 </Modal.Body>
 
                 <Modal.Footer>
+                    <Button variant = 'primary' onClick={onHide}>Save</Button>
                     <Button variant = 'secondary' onClick={onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>

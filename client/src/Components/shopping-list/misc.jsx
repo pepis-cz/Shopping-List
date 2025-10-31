@@ -11,13 +11,20 @@ function Archive() {
     )
 }
 
-function ShowMember() {
+function showMember() {
     const [show, setShow] = useState(false);
 
     return (
         <Button onClick = {() => setShow(!show)}>
             <i className = 'bi bi-person'/>
         </Button>
+    )
+}
+
+function Filter(members, userId) {
+    const result = members.filter((Id) => Id != userId);
+    return (
+        result
     )
 }
 
@@ -30,6 +37,9 @@ function Delete() {
 }
 
 function Unlink() {
+    const [unlinking, setUnlinking] = useState(false);
+    const [value, setValue] = useState('');
+
     return (
         <Button>
             <i className = 'bi bi-node-minus'/>
@@ -41,7 +51,7 @@ function Misc(userId, OwnerId) {
     return (
         <>
             <Archive/>
-            <ShowMember/>
+            <showMember/>
             { userId === OwnerId ? <Delete/> : <Unlink/> }
         </>
     )

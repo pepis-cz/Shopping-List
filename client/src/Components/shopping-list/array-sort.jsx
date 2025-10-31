@@ -1,8 +1,8 @@
-function arraySort (items) {
+function arraySort (list) {
     const arrayA = [];
     const arrayB = [];
 
-    items.forEach((item) => 
+    list.forEach((item) => 
         { if (item.status === false) {
             arrayA.push(item);
         }else{

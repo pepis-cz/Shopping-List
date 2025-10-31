@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function Title(title = 'List', archived = '') {
+function Title(title = 'List', archived = false) {
     const [editing, setEditing] = useState(false);
     const [value, setValue] = useState(title);
 
@@ -33,7 +33,11 @@ function Title(title = 'List', archived = '') {
             ) : (
                 <>
                     <h1 className = 'title'>{value}</h1>
-                    <h2 className = 'archived'>{archived}</h2>
+                    {archived ? (
+                        <h2 className = 'archived'>Archived</h2>
+                    ) : (
+                        <></>
+                    )}
 
                     <Button onClick = {() => setEditing(true)}>
                         <i className = 'bi bi-pencil'/>
