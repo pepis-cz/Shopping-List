@@ -1,15 +1,19 @@
 import Header from "./header";
-import BodyTop from "./body-top";
-import BodyBot from "./body-bot";
 import Footer from "./footer";
+
+import { useState } from "react";
 
 function ShoppingList({ users, shopL, userId }) {
 
+    const [archived, setArchived] = useState(shopL.archived);
+
+    console.log('ShoppingList:', archived, setArchived);
+
     return (
         <>
-            <Header title = {shopL.title} archived = {shopL.archived}/>
+            <Header title = {shopL.title} archived = {archived}/>
 
-            <Footer archived = {shopL.archived} users = {users} members = {shopL.members} userId = {userId} owner = {shopL.owner} id = {shopL.id}/>
+            <Footer archived = {archived} setArchived = {setArchived} users = {users} members = {shopL.members} userId = {userId} owner = {shopL.owner} id = {shopL.id}/>
         </>
     )
 }
