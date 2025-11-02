@@ -37,7 +37,7 @@ function Members({ users, members, userId, owner }) {
 
     return (
         <>
-            <Button onClick = {() => setShow(true)}>
+            <Button style={{marginLeft: "5px", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {() => setShow(true)}>
                 <i className = 'bi bi-person'/>
             </Button>
 
@@ -54,14 +54,14 @@ function Members({ users, members, userId, owner }) {
                             return (
                                 <ListGroup.Item key = {member.id}>
                                     <span>
-                                        <i className = 'bi bi-person'/>
+                                        <i style={{marginRight: "15px"}} className = 'bi bi-person'/>
                                         {member.email}
-                                        {member.id === owner && <span>(Vlastník)</span>}
+                                        {member.id === owner && <span> (Vlastník)</span>}
                                     </span>
 
                                     <span>
                                         {userId === owner && member.id !== owner && (
-                                            <Button onClick = {() => handleRemove(member.id)}>
+                                            <Button style={{marginLeft: "15px"}} variant = 'light' onClick = {() => handleRemove(member.id)}>
                                                 <i className = 'bi bi-x-lg'/>
                                             </Button>
                                         )}
@@ -72,7 +72,7 @@ function Members({ users, members, userId, owner }) {
 
                         <ListGroup.Item>
                             {owner === userId &&
-                                <Form onSubmit = {handleCreate}>
+                                <Form style={{width: "442px", display: 'flex'}} onSubmit = {handleCreate}>
                                     <Form.Control
                                         type = 'email'
                                         value = {email}
@@ -83,7 +83,7 @@ function Members({ users, members, userId, owner }) {
                                         }}
                                     />
 
-                                    <Button type = 'submit'>
+                                    <Button style={{marginLeft: "5px"}} variant = 'light' type = 'submit'>
                                         <i className = 'bi bi-check2'/>
                                     </Button>
 

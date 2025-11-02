@@ -5,7 +5,7 @@ function Archive({ archived, setArchived }) {
         setArchived(!archived);
 
     return (
-        <Button onClick = {handleClick}>
+        <Button style={{marginLeft: "5px", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {handleClick}>
             { archived ? <i className = 'bi bi-recycle'/> : <i className = 'bi bi-archive'/> }
         </Button>
     )

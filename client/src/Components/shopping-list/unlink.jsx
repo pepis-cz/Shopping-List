@@ -1,8 +1,6 @@
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 
-//owner array of lists, list id
-
 function Unlink({ array, userId }) {
     const [value, setValue] = useState(array);
 
@@ -12,7 +10,7 @@ function Unlink({ array, userId }) {
     }
 
     return (
-        <Button onClick = {() => handleDelete(userId)}>
+        <Button style={{marginLeft: "5px", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {() => handleDelete(userId)}>
             <i className = 'bi bi-node-minus'/>
         </Button>
     )

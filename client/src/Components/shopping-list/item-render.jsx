@@ -1,6 +1,7 @@
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import './body.css'
 
 function Render({ array, setArray, editingId, setEditingId, boolean }) {
     
@@ -26,14 +27,14 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
         {array.filter(item => item.status === boolean).map((item) => (
             <ListGroup.Item key = {item.id}>
                 <span>
-                    <Button className = 'checkbox' onClick = {() => handleStatus(item.id)}>
+                    <Button variant = 'light' size = 'lg' onClick = {() => handleStatus(item.id)}>
                         <i className = {item.status ? 'bi bi-check-square' : 'bi bi-square'}/>
                     </Button>
                 </span>
 
                 {item.id === editingId ? (
                     <span>
-                        <Form>
+                        <Form style ={{display: 'flex', width: '700px', marginLeft: "70px"}}>
                             <Form.Control
                                 type = 'text'
                                 value={item.name}
@@ -52,12 +53,12 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
                         </Form>
                     </span>
                 ) : (
-                    <Button className = 'edit-name' onClick = {() => setEditingId(item.id)}>
+                    <Button style={{width: "780px", height: "48px", textAlign: 'left'}} variant = 'light' size = 'lg' onClick = {() => setEditingId(item.id)}>
                         {item.name ?? ''}
                     </Button>
                 )}
                 <span>
-                    <Button className = 'remove-icon' onClick = {() => handleRemove(item.id)}>
+                    <Button variant = 'light' size = 'lg' onClick = {() => handleRemove(item.id)}>
                         <i className = 'bi bi-x-lg'/>
                     </Button>
                 </span>

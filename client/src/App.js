@@ -1,3 +1,5 @@
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import ShoppingList from './Components/shopping-list/shopping-list';
@@ -64,7 +66,7 @@ function App() {
 
   return (
     <>
-      <ShoppingList users = {InitialData.users} shopL = {InitialData.shopLists[0]} userId = {InitialData.userId}/>
+      <ShoppingList users = {InitialData.users} shopL = {InitialData.shopLists[1]} userId = {InitialData.userId}/>
     </>
   );
 }

@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button'
 
-//owner array of lists, list id
 function Delete({ id }) {
 
     const handleDelete = () => {
@@ -8,8 +7,8 @@ function Delete({ id }) {
     }
 
     return (
-        <Button onClick = {() => handleDelete()}>
-            <i className = 'bi bi-trash-bin'/>
+        <Button style={{marginLeft: "5px", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {() => handleDelete()}>
+            <i className = 'bi bi-trash'/>
         </Button>
     )
 }

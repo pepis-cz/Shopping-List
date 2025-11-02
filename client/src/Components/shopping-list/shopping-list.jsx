@@ -1,8 +1,7 @@
+import { useState } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Body from "./body";
-
-import { useState } from "react";
 
 function ShoppingList({ users, shopL, userId }) {
 

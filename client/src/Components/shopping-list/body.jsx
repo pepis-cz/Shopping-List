@@ -11,7 +11,7 @@ function Body({ items }) {
     const handleCreate = () => {
         const newItem = {
             id: array.length ? Math.max(...array.map((item) => item.id)) + 1 : 1,
-            name: '',
+            name: null,
             status: false
         }
 
@@ -21,23 +21,23 @@ function Body({ items }) {
 
     return (
         <>
-            <div>
+            <div className = 'body1'>
                 <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {false}/>
 
-                <Button className = 'add-item' onClick = {handleCreate}>
+                <Button variant = 'light' size = 'lg' onClick = {handleCreate}>
                     <i className = 'bi bi-plus'/> Přidat položku
                 </Button>
             </div>
 
-            <div>
-                <Button onClick = {() => {setVisibility(!visibility)}}>
+            <div className = 'body2'>
+                <Button variant = 'light' size = 'lg' onClick = {() => {setVisibility(!visibility)}}>
                     {visibility ? (
-                        <>Skrýt hotové položky<i className = 'bi bi-chevron-up'/> </>
+                        <>Skrýt hotové položky <i className = 'bi bi-chevron-up'/> </>
                     ) : (
-                        <>Zobrazit hotové položky<i className = 'bi bi-chevron-down'/> </>
+                        <>Zobrazit hotové položky <i className = 'bi bi-chevron-down'/> </>
                     )}
                 </Button>
-        
+
                 {visibility &&
                     <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {true}/>
                 }
