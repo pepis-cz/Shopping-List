@@ -18,7 +18,7 @@ function Header({ title, archived }) {
         <>
             {editing ? (
                 <>
-                    <Form>
+                    <Form onSubmit = {saveName}>
                         <Form.Control
                             type = 'text'
                             placeholder = 'Name'
@@ -28,18 +28,23 @@ function Header({ title, archived }) {
                             onKeyDown = {handleKeyDown}
                             autoFocus
                         />
+                        <Button type = 'submit'>
+                            <i className = 'bi bi-checck2'/>
+                        </Button>
                     </Form>
                 </>
             ) : (
                 <>
-                    <h1 className = 'name'>{name}</h1>
+                    <span className = 'left-title'>{name}</span>
                     {archived &&
-                        <h2 className = 'archived'>Archived</h2>
+                        <span className = 'middle-title'>Archivován</span>
                     }
 
+                    <span className = 'right-title'>
                     <Button onClick = {() => setEditing(true)}>
                         <i className = 'bi bi-pencil'/>
                     </Button>
+                    </span>
                 </>
             )}
         </>

@@ -27,7 +27,7 @@ function App() {
     shopLists: [
       {
         id: 'x',
-        title: 'Not new list',
+        title: 'list',
 
         items: [
           {
@@ -64,7 +64,7 @@ function App() {
 
   return (
     <>
-        <ShoppingList users = {InitialData.users} shopL = {InitialData.shopLists[0]} userId = {InitialData.userId}/>
+      <ShoppingList users = {InitialData.users} shopL = {InitialData.shopLists[0]} userId = {InitialData.userId}/>
     </>
   );
 }
