@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function BodyBot(items) {
-    const [toggling, setToggling] = useState(true);
+function BodyBot({ items }) {
+    const [visibility, setVisibility] = useState(true);
 
     const [array, setArray] = useState(items ?? []);
     const [editingId, setEditingId] = useState(null);
@@ -28,15 +28,15 @@ function BodyBot(items) {
 
     return (
         <>
-            <Button onClick = {() => {setToggling(!toggling)}}>
-                {toggling ? (
+            <Button onClick = {() => {setVisibility(!visibility)}}>
+                {visibility ? (
                     <>Skrýt <i className = 'bi bi-chevron-up'/> </>
                 ) : (
                     <>Zobrazit <i className = 'bi bi-chevron-down'/> </>
                 )}
             </Button>
     
-            {toggling ? (
+            {visibility &&
                 <ListGroup>
                     {array.map((item) => (
                         <ListGroup.Item key = {item.id}>
@@ -74,9 +74,7 @@ function BodyBot(items) {
                         </ListGroup.Item>
                     ))}
                 </ListGroup>
-            ) : (
-                <></>
-            )}
+            }
         </>
     )
 }

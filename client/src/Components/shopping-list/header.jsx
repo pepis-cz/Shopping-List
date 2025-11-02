@@ -2,15 +2,15 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function Title({ archived, title }) {
-    const [editing, setEditing] = useState(archived ?? false);
-    const [title, setTitle] = useState(title ?? 'New List');
+function Header({ title, archived }) {
+    const [editing, setEditing] = useState(false);
+    const [name, setName] = useState(title ?? 'New List');
 
-    const saveTitle = () => {setEditing(false)}
+    const saveName = () => {setEditing(false)}
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            saveTitle();
+            saveName();
         }
     }
 
@@ -22,9 +22,9 @@ function Title({ archived, title }) {
                         <Form.Control
                             type = 'text'
                             placeholder = 'Name'
-                            value={title}
-                            onChange = {(e) => setTitle(e.target.value)}
-                            onBlur = {saveTitle}
+                            value={name}
+                            onChange = {(e) => setName(e.target.value)}
+                            onBlur = {saveName}
                             onKeyDown = {handleKeyDown}
                             autoFocus
                         />
@@ -32,12 +32,10 @@ function Title({ archived, title }) {
                 </>
             ) : (
                 <>
-                    <h1 className = 'title'>{title}</h1>
-                    {archived ? (
+                    <h1 className = 'name'>{name}</h1>
+                    {archived &&
                         <h2 className = 'archived'>Archived</h2>
-                    ) : (
-                        <></>
-                    )}
+                    }
 
                     <Button onClick = {() => setEditing(true)}>
                         <i className = 'bi bi-pencil'/>
@@ -48,4 +46,4 @@ function Title({ archived, title }) {
     )
 }
 
-export default Title;
+export default Header;

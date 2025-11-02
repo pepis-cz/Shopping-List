@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function BodyTop(items) {
+function BodyTop({ items }) {
     const [array, setArray] = useState(items ?? []);
     const [editingId, setEditingId] = useState(null);
 
@@ -13,10 +13,10 @@ function BodyTop(items) {
     }
 
     const handleRemove = (id) => {
-        setArray((prev) => prev.filter((item) => item.id !== id))
-    };
+        setArray((prev) => prev.filter((item) => item.id !== id));
+    }
 
-    const saveName = () => setEditingId(null)
+    const saveName = () => setEditingId(null);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {

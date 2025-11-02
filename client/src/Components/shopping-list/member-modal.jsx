@@ -3,81 +3,108 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-function Modal({ members }) {
+import { useState } from 'react'
+
+function Members({ users, members, userId, owner }) {
+
     const [show, setShow] = useState(false);
-    const [array, setArray] = useState(members);
+    const [member, setMember] = useState([...members]);
 
-    const onHide = () => setShow(false);
+    const [email, setEmail] = useState('')
+    const [exist, setExist] = useState(true);
 
-    //kontrola zda existuje id
-    const saveName = () => setEditingId(null);
+    const usersMap = new Map(users.map(item => [item.id, item]));
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            saveName();
+    const handleCreate = (e) => {
+        e.preventDefault();
+
+        const found = users.find((item) => item.email === email);
+
+        if (found) {
+            setMember(prev => [...prev, found.id]);
+            setEmail('');
+        }else{
+            setExist(false);
         }
     }
 
     const handleRemove = (id) => {
-        setArray((prev) => prev.filter((item) => item !== id));
+
+        setMember((prev) => prev.filter((item) => item !== id));
     }
+
+    const onHide = () => setShow(false);
 
     return (
         <>
-
             <Button onClick = {() => setShow(true)}>
                 <i className = 'bi bi-person'/>
             </Button>
 
-            {show &&
-                <Modal onHide = {onHide}>
-                    <Modal.Header closeButton>
+            <Modal show = {show} onHide = {onHide}>
+                <Modal.Header closeButton>
                         <Modal.Title>Spolupracovníci</Modal.Title>
-                    </Modal.Header>
+                </Modal.Header>
 
-                    <Modal.Body>
-                        <ListGroup>
-                            {array.map((member) => (
+                <Modal.Body>
+                    <ListGroup>
+                        {member.map((id) => {
+                            const member = usersMap.get(id);
+
+                            return (
                                 <ListGroup.Item key = {member.id}>
-                                    <>
+                                    <span>
                                         <i className = 'bi bi-person'/>
                                         {member.email}
-                                        {owner && <span>(Vlastník)</span>}
-                                    </>
+                                        {member.id === owner && <span>(Vlastník)</span>}
+                                    </span>
 
-                                    {userId === owner && member.id !== owner &&(
-                                        <Button onClick = {() => handleRemove(member.id)}>
-                                            <i className = 'bi bi-x-lg'/>
-                                        </Button>
-                                    )}
+                                    <span>
+                                        {userId === owner && member.id !== owner && (
+                                            <Button onClick = {() => handleRemove(member.id)}>
+                                                <i className = 'bi bi-x-lg'/>
+                                            </Button>
+                                        )}
+                                    </span>
                                 </ListGroup.Item>
-                            ))}
+                            )
+                        })}
 
-                            <ListGroup.Item>
-                                {owner &&
-                                    <Form>
-                                        <Form.Control
-                                            type = 'email'
-                                            placeholder = 'E-mailová adresa pro sdílení'
+                        <ListGroup.Item>
+                            {owner === userId &&
+                                <Form onSubmit = {handleCreate}>
+                                    <Form.Control
+                                        type = 'email'
+                                        value = {email}
+                                        placeholder = 'E-mailová adresa pro sdílení'
+                                        onChange = {(e) => {
+                                            setEmail(e.target.value);
+                                            setExist(true);
+                                        }}
+                                    />
 
-                                            onBlur = {saveName}
-                                            onKeyDown = {handleKeyDown}
-                                        />
-                                    </Form>
-                                }
-                            </ListGroup.Item>
-                        </ListGroup>
+                                    <Button type = 'submit'>
+                                        <i className = 'bi bi-check2'/>
+                                    </Button>
 
+                                    {!exist && 
+                                        <Form.Text>
+                                        Takový e-mail neexistuje v systému.
+                                        </Form.Text>
+                                    }
+                                </Form>
+                            }
+                        </ListGroup.Item>
+                    </ListGroup>
 
-                    </Modal.Body>
+                </Modal.Body>
 
-                    <Modal.Footer>
-                        <Button variant = 'secondary' onClick={onHide}>Zavřít</Button>
-                    </Modal.Footer>
-                </Modal>
-            }
+                <Modal.Footer>
+                    <Button variant = 'secondary' onClick={onHide}>Zavřít</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }
 
-export default Modal
+export default Members

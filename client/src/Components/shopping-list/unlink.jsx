@@ -3,15 +3,16 @@ import { useState } from 'react'
 
 //owner array of lists, list id
 
-function Unlink({ array, id }) {
+function Unlink({ array, userId }) {
     const [value, setValue] = useState(array);
 
     const handleDelete = (id) => {
         setValue((prev) => prev.filter((item) => item !== id));
+        window.location.reload();
     }
 
     return (
-        <Button onClick = {() => handleDelete(id)}>
+        <Button onClick = {() => handleDelete(userId)}>
             <i className = 'bi bi-node-minus'/>
         </Button>
     )

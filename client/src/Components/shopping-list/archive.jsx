@@ -1,13 +1,16 @@
-function Archive(archived) {
-    const [archived, setArchived] = useState(archived);
+import { useState } from 'react'
+import Button from 'react-bootstrap/Button'
+
+function Archive({ archived }) {
+    const [toggle, setToggle] = useState(archived);
 
     const handleClick = () => {
-        setArchived(!archived);
+        setToggle(!toggle);
     }
 
     return (
         <Button onClick = {handleClick}>
-            { archived ? <i className = 'bi bi-recycle'/> : <i className = 'bi bi-archive'/> }
+            { toggle ? <i className = 'bi bi-recycle'/> : <i className = 'bi bi-archive'/> }
         </Button>
     )
 }

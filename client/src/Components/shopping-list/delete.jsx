@@ -1,17 +1,14 @@
 import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
 
 //owner array of lists, list id
+function Delete({ id }) {
 
-function Delete({ array, id }) {
-    const [value, setValue] = useState(array);
-
-    const handleDelete = (id) => {
-        setValue((prev) => prev.filter((item) => item.id !== id));
+    const handleDelete = () => {
+        window.location.reload();
     }
 
     return (
-        <Button onClick = {() => handleDelete(id)}>
+        <Button onClick = {() => handleDelete()}>
             <i className = 'bi bi-trash-bin'/>
         </Button>
     )
