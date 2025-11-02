@@ -3,17 +3,17 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function BodyTop(dtoIn) {
-    const [array, setArray] = useState(dtoIn ?? []);
+function BodyTop(items) {
+    const [array, setArray] = useState(items ?? []);
     const [editingId, setEditingId] = useState(null);
 
-    const handleStatus = (params) => {
-        const update = array.map((i) => i.id === params ? {...i, status: true } : i);
+    const handleStatus = (id) => {
+        const update = array.map((i) => i.id === id ? {...i, status: true } : i);
         setArray(update);
     }
 
-    const handleRemove = (params) => {
-        setArray((array) => array.filter((item) => item.id !== params))
+    const handleRemove = (id) => {
+        setArray((prev) => prev.filter((item) => item.id !== id))
     };
 
     const saveName = () => setEditingId(null)

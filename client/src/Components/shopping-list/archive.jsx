@@ -1,5 +1,5 @@
-function Archive(dtoIn) {
-    const [archived, setArchived] = useState(dtoIn.archived);
+function Archive(archived) {
+    const [archived, setArchived] = useState(archived);
 
     const handleClick = () => {
         setArchived(!archived);

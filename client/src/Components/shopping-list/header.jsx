@@ -2,10 +2,9 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-//dtoIn.title, dtoIn.archived
-function Title(list) {
-    const [editing, setEditing] = useState(list.archived ?? false);
-    const [title, setTitle] = useState(list.title ?? 'New List');
+function Title({ archived, title }) {
+    const [editing, setEditing] = useState(archived ?? false);
+    const [title, setTitle] = useState(title ?? 'New List');
 
     const saveTitle = () => {setEditing(false)}
 

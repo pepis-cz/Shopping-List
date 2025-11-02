@@ -3,19 +3,19 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
-function BodyBot(dtoIn) {
+function BodyBot(items) {
     const [toggling, setToggling] = useState(true);
 
-    const [array, setArray] = useState(dtoIn ?? []);
+    const [array, setArray] = useState(items ?? []);
     const [editingId, setEditingId] = useState(null);
 
-    const handleStatus = (params) => {
-        const update = array.map((i) => i.id === params ? {...i, status: false } : i);
+    const handleStatus = (id) => {
+        const update = array.map((i) => i.id === id ? {...i, status: false } : i);
         setArray(update);
     }
 
-    const handleRemove = (params) => {
-        setArray((array) => array.filter((item) => item.id !== params))
+    const handleRemove = (id) => {
+        setArray((prev) => prev.filter((item) => item.id !== id))
     };
 
     const saveName = () => setEditingId(null)
@@ -30,9 +30,9 @@ function BodyBot(dtoIn) {
         <>
             <Button onClick = {() => {setToggling(!toggling)}}>
                 {toggling ? (
-                    <>Skrýt <i class = 'bi bi-chevron-up'/> </>
+                    <>Skrýt <i className = 'bi bi-chevron-up'/> </>
                 ) : (
-                    <>Zobrazit <i class = 'bi bi-chevron-down'/> </>
+                    <>Zobrazit <i className = 'bi bi-chevron-down'/> </>
                 )}
             </Button>
     
