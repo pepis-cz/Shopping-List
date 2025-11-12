@@ -9,6 +9,7 @@ function Body({ items }) {
     const [editingId, setEditingId] = useState(null);
 
     const handleCreate = () => {
+        setEditingId(null);
         const newItem = {
             id: array.length ? Math.max(...array.map((item) => item.id)) + 1 : 1,
             name: null,

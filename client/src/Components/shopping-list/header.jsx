@@ -46,11 +46,10 @@ function Header({ title, archived }) {
                     </div>
 
                     <div className = 'title'>
-                        {name}
-                    </div>
-                        {archived &&
-                            <p className = 'note'> (Archivován)</p>
+                        {name} {archived &&
+                            <p style={{marginLeft: '5px'}}> (Archivován)</p>
                         }
+                    </div>
                 </div>
             )}
         </>

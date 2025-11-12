@@ -25,7 +25,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
     return (
     <ListGroup>
         {array.filter(item => item.status === boolean).map((item) => (
-            <ListGroup.Item key = {item.id}>
+            <ListGroup.Item style = {{display: 'flex'}} key = {item.id}>
                 <span>
                     <Button variant = 'light' size = 'lg' onClick = {() => handleStatus(item.id)}>
                         <i className = {item.status ? 'bi bi-check-square' : 'bi bi-square'}/>
@@ -34,7 +34,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
 
                 {item.id === editingId ? (
                     <span>
-                        <Form style ={{display: 'flex', width: '700px', marginLeft: "70px"}}>
+                        <Form style ={{width: '780px', marginTop: '5px'}}>
                             <Form.Control
                                 type = 'text'
                                 value={item.name}
