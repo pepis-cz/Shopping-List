@@ -10,7 +10,7 @@ function Unlink({ array, userId }) {
     }
 
     return (
-        <Button style={{marginLeft: "5px", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {() => handleDelete(userId)}>
+        <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => handleDelete(userId)}>
             <i className = 'bi bi-node-minus'/>
         </Button>
     )

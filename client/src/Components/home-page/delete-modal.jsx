@@ -30,5 +30,5 @@ function Warning({ list, id }) {
         </>
     )
 }
-
+//smazat soubor ci objekt pomoci array filter
 export default Warning

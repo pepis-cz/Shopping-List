@@ -2,14 +2,16 @@ import { useState } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Body from "./body";
+import Modal from 'react-bootstrap/Modal'
 
 function ShoppingList({ users, shopL, userId }) {
 
     const [archived, setArchived] = useState(shopL.archived);
+    const [show, setShow] = useState(true);
 
     return (
-        <>
-            <Header 
+        <Modal show = {show}>
+            <Header
                 title = {shopL.title} 
                 archived = {archived}
             />
@@ -27,7 +29,7 @@ function ShoppingList({ users, shopL, userId }) {
                 owner = {shopL.owner} 
                 id = {shopL.id}
             />
-        </>
+        </Modal>
     )
 }
 

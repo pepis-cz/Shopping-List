@@ -1,7 +1,6 @@
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import './body.css'
 
 function Render({ array, setArray, editingId, setEditingId, boolean }) {
     
@@ -26,42 +25,36 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
     <ListGroup>
         {array.filter(item => item.status === boolean).map((item) => (
             <ListGroup.Item style = {{display: 'flex'}} key = {item.id}>
-                <span>
-                    <Button variant = 'light' size = 'lg' onClick = {() => handleStatus(item.id)}>
-                        <i className = {item.status ? 'bi bi-check-square' : 'bi bi-square'}/>
-                    </Button>
-                </span>
+                <Button style = {{background: "transparent", marginRight: "5px"}} variant = 'light' size = 'lg' onClick = {() => handleStatus(item.id)}>
+                    <i className = {item.status ? 'bi bi-check-square' : 'bi bi-square'}/>
+                </Button>
 
                 {item.id === editingId ? (
-                    <span>
-                        <Form style ={{width: '780px', marginTop: '5px'}}>
-                            <Form.Control
-                                type = 'text'
-                                value={item.name}
-                                onChange = {
-                                    (e) => {
-                                        const update = array.map((item) => 
-                                            item.id === editingId ? { ...item, name: e.target.value } : item);
-                                            setArray(update);
-                                    }
+                    <Form style = {{width: "350px", marginTop: "5px"}}>
+                        <Form.Control
+                            type = 'text'
+                            value={item.name}
+                            onChange = {
+                                (e) => {
+                                    const update = array.map((item) => 
+                                        item.id === editingId ? { ...item, name: e.target.value } : item);
+                                        setArray(update);
                                 }
+                            }
 
-                                onBlur = {saveName}
-                                onKeyDown = {handleKeyDown}
-                                autoFocus
-                                />
-                        </Form>
-                    </span>
+                            onBlur = {saveName}
+                            onKeyDown = {handleKeyDown}
+                            autoFocus
+                            />
+                    </Form>
                 ) : (
-                    <Button style={{width: "780px", height: "48px", textAlign: 'left'}} variant = 'light' size = 'lg' onClick = {() => setEditingId(item.id)}>
-                        {item.name ?? ''}
+                    <Button style = {{background: "transparent", width: "350px", textAlign: "left", overflow: "hidden", textOverflow: 'ellipsis'}} variant = 'light' size = 'lg' onClick = {() => setEditingId(item.id)}>
+                        {item.name}
                     </Button>
                 )}
-                <span>
-                    <Button variant = 'light' size = 'lg' onClick = {() => handleRemove(item.id)}>
-                        <i className = 'bi bi-x-lg'/>
-                    </Button>
-                </span>
+                <Button style = {{background: "transparent", marginLeft: "5px"}} variant = 'light' size = 'lg' onClick = {() => handleRemove(item.id)}>
+                    <i className = 'bi bi-x-lg'/>
+                </Button>
             </ListGroup.Item>
             ))}
         </ListGroup>

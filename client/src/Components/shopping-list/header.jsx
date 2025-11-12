@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
-import './header.css'
+import Modal from 'react-bootstrap/Modal'
 
 function Header({ title, archived }) {
     const [editing, setEditing] = useState(false);
-    const [name, setName] = useState(title ?? 'New List');
+    const [name, setName] = useState(title);
 
     const saveName = () => {setEditing(false)}
 
@@ -16,11 +16,11 @@ function Header({ title, archived }) {
     }
 
     return (
-        <>
+        <Modal.Header>
             {editing ? (
-                <div className = 'header'>
-                        <Form style={{paddingLeft: '10px', width: "912px", display: 'flex'}} className = 'form' onSubmit = {saveName}>
-
+                <Modal.Title>
+                    <Form style = {{width: '470px'}} className = 'form' onSubmit = {saveName}>
+                        <div style = {{display: "flex", gap: "10px"}}>
                             <Form.Control
                                 type = 'text'
                                 placeholder = 'Name'
@@ -31,28 +31,29 @@ function Header({ title, archived }) {
                                 autoFocus
                             />
 
-                            <Button style={{float: 'right', marginLeft: '10px'}} variant = 'light' size = 'lg' type = 'submit'>
+                            <Button style={{background: "transparent"}} variant = 'light' size = 'lg' type = 'submit'>
                                 <i className = 'bi bi-check2'/>
                             </Button>
+                        </div>
+                    </Form>
+                </Modal.Title>
 
-                        </Form>
-                </div>
             ) : (
-                <div className = 'header'>
-                    <div className = 'icon'>
-                        <Button style = {{marginRight: '20px'}} variant = 'light' size = 'lg' onClick = {() => setEditing(true)}>
+                <Modal.Title>
+                    <div style = {{display: 'flex', fontSize: "20px"}}>
+                        <div style = {{paddingTop: "7px", overflow: "hidden", textOverflow: 'ellipsis'}}>
+                            {name}
+                        </div>
+
+                        <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => setEditing(true)}>
                             <i className = 'bi bi-pencil'/>
                         </Button>
-                    </div>
 
-                    <div className = 'title'>
-                        {name} {archived &&
-                            <p style={{marginLeft: '5px'}}> (Archivován)</p>
-                        }
+                            {archived && <p >(Archivován)</p>}
                     </div>
-                </div>
+                </Modal.Title>
             )}
-        </>
+        </Modal.Header>
     )
 }
 

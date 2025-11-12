@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import Render from './item-render'
 import { useState } from 'react'
+import Modal from 'react-bootstrap/Modal'
 
 function Body({ items }) {
 
@@ -21,29 +22,32 @@ function Body({ items }) {
     };
 
     return (
-        <>
-            <div className = 'body1'>
+        <Modal.Body>
+            <div>
                 <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {false}/>
 
-                <Button variant = 'light' size = 'lg' onClick = {handleCreate}>
+                <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {handleCreate}>
                     <i className = 'bi bi-plus'/> Přidat položku
                 </Button>
             </div>
 
-            <div className = 'body2'>
-                <Button variant = 'light' size = 'lg' onClick = {() => {setVisibility(!visibility)}}>
-                    {visibility ? (
-                        <>Skrýt hotové položky <i className = 'bi bi-chevron-up'/> </>
-                    ) : (
-                        <>Zobrazit hotové položky <i className = 'bi bi-chevron-down'/> </>
-                    )}
-                </Button>
+            <div>
+                {array.length ?
+                    <Button style = {{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => {setVisibility(!visibility)}}>
+                        {visibility ? (
+                            <>Skrýt hotové položky <i className = 'bi bi-chevron-up'/> </>
+                        ) : (
+                            <>Zobrazit hotové položky <i className = 'bi bi-chevron-down'/> </>
+                        )}
+                    </Button>
+                : null}
 
                 {visibility &&
                     <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {true}/>
                 }
+                
             </div>
-        </>
+        </Modal.Body>
     )
 }
 
