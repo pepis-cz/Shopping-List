@@ -19,7 +19,7 @@ function Header({ title, archived }) {
         <Modal.Header>
             {editing ? (
                 <Modal.Title>
-                    <Form style = {{width: '470px'}} className = 'form' onSubmit = {saveName}>
+                    <Form style = {{width: '470px'}} onSubmit = {saveName}>
                         <div style = {{display: "flex", gap: "10px"}}>
                             <Form.Control
                                 type = 'text'
@@ -49,7 +49,7 @@ function Header({ title, archived }) {
                             <i className = 'bi bi-pencil'/>
                         </Button>
 
-                            {archived && <p >(Archivován)</p>}
+                            {archived && <p>(Archivován)</p>}
                     </div>
                 </Modal.Title>
             )}

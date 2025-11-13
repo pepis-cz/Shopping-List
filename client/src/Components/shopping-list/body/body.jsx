@@ -33,7 +33,13 @@ function Body({ items }) {
 
             <div>
                 {array.length ?
-                    <Button style = {{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => {setVisibility(!visibility)}}>
+                    <Button style = {{
+                        background: "transparent"
+                    }} 
+                        variant = 'light' 
+                        size = 'lg' 
+                        onClick = {() => {setVisibility(!visibility)}}
+                    >
                         {visibility ? (
                             <>Skrýt hotové položky <i className = 'bi bi-chevron-up'/> </>
                         ) : (
@@ -43,9 +49,14 @@ function Body({ items }) {
                 : null}
 
                 {visibility &&
-                    <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {true}/>
+                    <Render 
+                        array = {array} 
+                        setArray = {setArray} 
+                        editingId = {editingId} 
+                        setEditingId = {setEditingId} 
+                        boolean = {true}
+                    />
                 }
-                
             </div>
         </Modal.Body>
     )

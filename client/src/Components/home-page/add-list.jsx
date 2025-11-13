@@ -1,8 +1,8 @@
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import ShoppingList from '../shopping-list/shopping-list';
 const crypto = require('crypto');
 
-function AddList({ updateLists, owner }) {
+function AddList({ setLists, owner, users, show, setShow }) {
     const handleAdd = () => {
         const newList = {
             id: crypto.randomBytes(16).toString('hex'),
@@ -14,7 +14,18 @@ function AddList({ updateLists, owner }) {
             members: [owner],
             archived: false
         };
-        updateLists(prev => [...prev, newList]);
+
+        setLists(prev => [...prev, newList]);
+        setShow(true);
+
+        <ShoppingList
+            users = {users}
+            shopList = {newList}
+            userId = {owner}
+            show = {show}
+            setShow = {setShow}
+            setLists = {setLists}
+        />
     }
 
     return (
@@ -23,5 +34,5 @@ function AddList({ updateLists, owner }) {
         </Button>
     )
 }
-
+//pridat editingId jako pro itemy
 export default AddList

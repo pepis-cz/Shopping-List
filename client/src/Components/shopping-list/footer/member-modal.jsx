@@ -37,7 +37,13 @@ function Members({ users, members, userId, owner }) {
 
     return (
         <>
-            <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => setShow(true)}>
+            <Button style={{
+                background: "transparent"
+            }} 
+                variant = 'light' 
+                size = 'lg' 
+                onClick = {() => setShow(true)}
+            >
                 <i className = 'bi bi-person'/>
             </Button>
 
@@ -53,19 +59,15 @@ function Members({ users, members, userId, owner }) {
 
                             return (
                                 <ListGroup.Item key = {member.id}>
-                                    <span>
                                         <i className = 'bi bi-person'/>
                                         {member.email}
                                         {member.id === owner && <span> (Vlastník)</span>}
-                                    </span>
 
-                                    <span>
                                         {userId === owner && member.id !== owner && (
                                             <Button variant = 'light' onClick = {() => handleRemove(member.id)}>
                                                 <i className = 'bi bi-x-lg'/>
                                             </Button>
                                         )}
-                                    </span>
                                 </ListGroup.Item>
                             )
                         })}
@@ -89,7 +91,7 @@ function Members({ users, members, userId, owner }) {
 
                                     {!exist && 
                                         <Form.Text>
-                                        Takový e-mail neexistuje v systému.
+                                            Takový e-mail neexistuje v systému.
                                         </Form.Text>
                                     }
                                 </Form>

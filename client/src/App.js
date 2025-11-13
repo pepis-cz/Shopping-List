@@ -2,7 +2,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import ShoppingList from './Components/shopping-list/shopping-list';
+import Dashboard from './Components/home-page/dashboard';
 
 function App() {
 
@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      <ShoppingList users = {InitialData.users} shopL = {InitialData.shopLists[0]} userId = {InitialData.userId}/>
+      <Dashboard users = {InitialData.users} shopLists = {InitialData.shopLists} userId = {InitialData.userId}/>
     </>
   );
 }

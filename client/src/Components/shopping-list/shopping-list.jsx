@@ -1,33 +1,31 @@
-import { useState } from "react";
 import Header from "./header";
-import Footer from "./footer";
-import Body from "./body";
+import Footer from "./footer/footer";
+import Body from "./body/body";
 import Modal from 'react-bootstrap/Modal'
 
-function ShoppingList({ users, shopL, userId }) {
-
-    const [archived, setArchived] = useState(shopL.archived);
-    const [show, setShow] = useState(true);
+function ShoppingList({ users, shopList, userId, show, setShow, setLists }) {
 
     return (
-        <Modal show = {show}>
+        <Modal show = {show} onHide = {setShow(false)}>
             <Header
-                title = {shopL.title} 
-                archived = {archived}
+                title = {shopList.title}
+                archived = {shopList.archived}
             />
 
-            <Body 
-                items = {shopL.items}
+            <Body
+                items = {shopList.items}
             />
 
-            <Footer 
-                archived = {archived} 
-                setArchived = {setArchived} 
-                users = {users} 
-                members = {shopL.members} 
-                userId = {userId} 
-                owner = {shopL.owner} 
-                id = {shopL.id}
+            <Footer
+                archived = {shopList.archived}
+                setArchived = {setArchived}
+                users = {users}
+                members = {shopList.members}
+                userId = {userId}
+                owner = {shopList.owner}
+                id = {shopList.id}
+                setShow = {setShow}
+                setLists = {setLists}
             />
         </Modal>
     )
