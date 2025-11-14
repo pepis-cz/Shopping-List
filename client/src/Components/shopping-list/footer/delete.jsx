@@ -1,29 +1,33 @@
 import Button from 'react-bootstrap/Button'
-import Warning from '../home-page/delete-modal';
+import Warning from '../../home-page/delete-modal';
 import { useState } from 'react'
 
-function Delete({ id, setLists }) {
-    const [warn,setWarn] = useState(false);
+function Delete({ id, lists, setLists, setShow }) {
+    const [warn, setWarn] = useState(false);
 
-    const handleAlert = () => {
-        <Warning 
-            warn = {warn} 
-            setWarn = {setWarn} 
-            setLists = {setLists} 
-            id = {id}
-        />
-    }
+    const handleAlert = () => setWarn(true);
 
     return (
-        <Button style={{
-            background: "transparent"
-        }} 
-            variant = 'light' 
-            size = 'lg' 
-            onClick = {() => handleAlert()}
-        >
-            <i className = 'bi bi-trash'/>
-        </Button>
+        <>
+            <Button style={{
+                background: "transparent"
+            }} 
+                variant = 'light' 
+                size = 'lg' 
+                onClick = {() => handleAlert()}
+            >
+                <i className = 'bi bi-trash'/>
+            </Button>
+
+            <Warning 
+                warn = {warn} 
+                setWarn = {setWarn}
+                lists = {lists}
+                setLists = {setLists} 
+                id = {id}
+                setShow = {setShow}
+            />
+        </>
     )
 }
 

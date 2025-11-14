@@ -1,13 +1,15 @@
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-function Warning({ warn, setWarn, setLists, id }) {
+function Warning({ warn, setWarn, lists, setLists, id, setShow }) {
     const handleDelete = (id) => {
+        setWarn(false);
+        setShow(false);
         setLists(prev => prev.filter((item) => item.id !== id));
     }
 
     return (
-        <Modal show = {warn}>
+        <Modal show = {warn} onHide = {() => setShow(false)}>
             <Modal.Header>
                 <Modal.Title>Varování</Modal.Title>
             </Modal.Header>

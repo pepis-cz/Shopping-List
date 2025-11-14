@@ -28,7 +28,7 @@ function App() {
   
     shopLists: [
       {
-        id: 'x',
+        id: '0',
         title: 'list',
 
         items: [
@@ -49,7 +49,7 @@ function App() {
         archived: true
       },
       {
-        id: 'y',
+        id: '1',
         title: '',
 
         items: [

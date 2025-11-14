@@ -1,8 +1,10 @@
 import Button from 'react-bootstrap/Button'
 
-function Archive({ archived, setArchived }) {
-    const handleClick = () => 
-        setArchived(!archived);
+function Archive({ archived, lists, setLists, id}) {
+    const handleClick = () => {
+        const updateList = lists.map((item) => item.id === id ? {...item, archived: !item.archived} : item);
+        setLists(prev => [...prev, updateList]);
+    }
 
     return (
         <Button style={{

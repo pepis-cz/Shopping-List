@@ -1,38 +1,40 @@
 import Button from 'react-bootstrap/Button'
 import ShoppingList from '../shopping-list/shopping-list';
-const crypto = require('crypto');
 
-function AddList({ setLists, owner, users, show, setShow }) {
+function AddList({ lists, setLists, userId, users, show, setShow }) {
     const handleAdd = () => {
         const newList = {
-            id: crypto.randomBytes(16).toString('hex'),
+            id: lists.length ? Math.max( ...lists.map(item => item.id)) + 1 : 0,
             title: '',
 
             items: [],
 
-            owner: {owner},
-            members: [owner],
+            owner: userId,
+            members: [userId],
             archived: false
         };
 
         setLists(prev => [...prev, newList]);
         setShow(true);
-
-        <ShoppingList
-            users = {users}
-            shopList = {newList}
-            userId = {owner}
-            show = {show}
-            setShow = {setShow}
-            setLists = {setLists}
-        />
     }
 
     return (
-        <Button variant = 'light' size = 'lg' onClick = {handleAdd}>
-            Přidat seznam
-        </Button>
+        <>
+            <Button variant = 'light' size = 'lg' onClick = {handleAdd}>
+                Přidat seznam
+            </Button>
+
+            <ShoppingList
+                users = {users}
+                shopList = {lists[lists.length - 1]}
+                userId = {userId}
+                show = {show}
+                setShow = {setShow}
+                lists = {lists}
+                setLists = {setLists}
+            />
+        </>
     )
 }
-//pridat editingId jako pro itemy
+
 export default AddList

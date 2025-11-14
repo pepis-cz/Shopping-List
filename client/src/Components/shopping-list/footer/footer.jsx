@@ -5,14 +5,16 @@ import Unlink from './unlink';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-function Footer({ archived, setArchived, users, members, userId, owner, id, setShow, setLists }) {
-    const handleClose = () => {setShow(false)}
+function Footer({ archived, users, members, userId, owner, id, setShow, lists, setLists }) {
+    const handleClose = () => setShow(false);
 
     return(
         <Modal.Footer>
             <Archive 
                 archived = {archived}
-                setArchived = {setArchived}
+                lists = {lists}
+                setLists = {setLists}
+                id = {id}
             />
             <Members 
                 users = {users} 
@@ -22,7 +24,7 @@ function Footer({ archived, setArchived, users, members, userId, owner, id, setS
             />
 
             {owner === userId? (
-                <Delete id = {id} setLists = {setLists}/>
+                <Delete id = {id} lists = {lists} setLists = {setLists} setShow = {setShow}/>
             ) : (
                 <Unlink array = {members} userId = {userId}/>
             )}

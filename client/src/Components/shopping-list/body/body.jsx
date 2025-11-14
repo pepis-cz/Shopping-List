@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 
 function Body({ items }) {
 
-    const[array, setArray] = useState(items ?? [])
+    const[array, setArray] = useState(items)
     const [visibility, setVisibility] = useState(true);
     const [editingId, setEditingId] = useState(null);
 
@@ -36,7 +36,7 @@ function Body({ items }) {
                     <Button style = {{
                         background: "transparent"
                     }} 
-                        variant = 'light' 
+                        variant = 'light'
                         size = 'lg' 
                         onClick = {() => {setVisibility(!visibility)}}
                     >

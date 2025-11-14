@@ -24,7 +24,7 @@ function Header({ title, archived }) {
                             <Form.Control
                                 type = 'text'
                                 placeholder = 'Name'
-                                value={name ?? 'new List'}
+                                value={name}
                                 onChange = {(e) => setName(e.target.value)}
                                 onBlur = {saveName}
                                 onKeyDown = {handleKeyDown}
@@ -41,9 +41,16 @@ function Header({ title, archived }) {
             ) : (
                 <Modal.Title>
                     <div style = {{display: 'flex', fontSize: "20px"}}>
-                        <div style = {{paddingTop: "7px", overflow: "hidden", textOverflow: 'ellipsis'}}>
-                            {name}
-                        </div>
+                        
+                        {name === '' ? (
+                            <div style = {{paddingTop: "7px", opacity: '80%'}}>
+                                Název
+                            </div>
+                        ) : (
+                            <div style = {{paddingTop: "7px", overflow: "hidden", textOverflow: 'ellipsis'}}> 
+                                {name}
+                            </div>
+                        )}
 
                         <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => setEditing(true)}>
                             <i className = 'bi bi-pencil'/>

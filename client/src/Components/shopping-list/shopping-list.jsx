@@ -3,10 +3,10 @@ import Footer from "./footer/footer";
 import Body from "./body/body";
 import Modal from 'react-bootstrap/Modal'
 
-function ShoppingList({ users, shopList, userId, show, setShow, setLists }) {
+function ShoppingList({ users, shopList, userId, show, setShow, lists, setLists }) {
 
     return (
-        <Modal show = {show} onHide = {setShow(false)}>
+        <Modal show = {show} onHide = {() => setShow(false)}>
             <Header
                 title = {shopList.title}
                 archived = {shopList.archived}
@@ -18,13 +18,13 @@ function ShoppingList({ users, shopList, userId, show, setShow, setLists }) {
 
             <Footer
                 archived = {shopList.archived}
-                setArchived = {setArchived}
                 users = {users}
                 members = {shopList.members}
                 userId = {userId}
                 owner = {shopList.owner}
                 id = {shopList.id}
                 setShow = {setShow}
+                lists = {lists}
                 setLists = {setLists}
             />
         </Modal>

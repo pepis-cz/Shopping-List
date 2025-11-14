@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 function Members({ users, members, userId, owner }) {
 
-    const [show, setShow] = useState(false);
+    const [view, setView] = useState(false);
     const [member, setMember] = useState([...members]);
 
     const [email, setEmail] = useState('')
@@ -33,7 +33,7 @@ function Members({ users, members, userId, owner }) {
         setMember((prev) => prev.filter((item) => item !== id));
     }
 
-    const onHide = () => setShow(false);
+    const onHide = () => setView(false);
 
     return (
         <>
@@ -42,12 +42,12 @@ function Members({ users, members, userId, owner }) {
             }} 
                 variant = 'light' 
                 size = 'lg' 
-                onClick = {() => setShow(true)}
+                onClick = {() => setView(true)}
             >
                 <i className = 'bi bi-person'/>
             </Button>
 
-            <Modal show = {show} onHide = {onHide}>
+            <Modal show = {view} onHide = {onHide}>
                 <Modal.Header closeButton>
                         <Modal.Title>Spolupracovníci</Modal.Title>
                 </Modal.Header>
