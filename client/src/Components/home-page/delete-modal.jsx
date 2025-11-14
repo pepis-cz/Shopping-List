@@ -1,9 +1,10 @@
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-function Warning({ warn, setWarn, lists, setLists, id, setShow }) {
+function Warning({ warn, setWarn, setLists, id, setShow, setModalId }) {
     const handleDelete = (id) => {
         setWarn(false);
+        setModalId(null);
         setShow(false);
         setLists(prev => prev.filter((item) => item.id !== id));
     }

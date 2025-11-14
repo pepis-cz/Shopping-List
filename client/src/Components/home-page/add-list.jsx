@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import ShoppingList from '../shopping-list/shopping-list';
 
-function AddList({ lists, setLists, userId, users, show, setShow }) {
+function AddList({ lists, setLists, userId, users, show, setShow, modalId, setModalId }) {
     const handleAdd = () => {
         const newList = {
             id: lists.length ? Math.max( ...lists.map(item => item.id)) + 1 : 0,
@@ -16,6 +16,7 @@ function AddList({ lists, setLists, userId, users, show, setShow }) {
 
         setLists(prev => [...prev, newList]);
         setShow(true);
+        setModalId(newList.id);
     }
 
     return (
@@ -24,6 +25,7 @@ function AddList({ lists, setLists, userId, users, show, setShow }) {
                 Přidat seznam
             </Button>
 
+        {modalId === lists[lists.length] - 1 &&
             <ShoppingList
                 users = {users}
                 shopList = {lists[lists.length - 1]}
@@ -32,7 +34,9 @@ function AddList({ lists, setLists, userId, users, show, setShow }) {
                 setShow = {setShow}
                 lists = {lists}
                 setLists = {setLists}
+                setModalId = {setModalId}
             />
+        }
         </>
     )
 }

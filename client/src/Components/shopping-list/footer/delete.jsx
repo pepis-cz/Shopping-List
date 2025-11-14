@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Warning from '../../home-page/delete-modal';
 import { useState } from 'react'
 
-function Delete({ id, lists, setLists, setShow }) {
+function Delete({ id, setLists, setShow, setModalId }) {
     const [warn, setWarn] = useState(false);
 
     const handleAlert = () => setWarn(true);
@@ -22,10 +22,10 @@ function Delete({ id, lists, setLists, setShow }) {
             <Warning 
                 warn = {warn} 
                 setWarn = {setWarn}
-                lists = {lists}
                 setLists = {setLists} 
                 id = {id}
                 setShow = {setShow}
+                setModalId = {setModalId}
             />
         </>
     )

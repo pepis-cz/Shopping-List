@@ -1,8 +1,8 @@
 import Button from 'react-bootstrap/Button'
-import Card from './card';
+import Cards from './card';
 import { useState } from 'react'
 
-function Toggle({ users, userId, lists, setLists, show, setShow }) {
+function Toggle({ users, userId, lists, setLists, show, setShow, modalId, setModalId }) {
 
     const [toggle, setToggle] = useState(false);
     const handleToggle = () => setToggle(!toggle);
@@ -14,7 +14,7 @@ function Toggle({ users, userId, lists, setLists, show, setShow }) {
             </Button>
 
             {toggle && (
-                <Card 
+                <Cards
                     users = {users} 
                     userId = {userId} 
                     lists = {lists} 
@@ -22,6 +22,8 @@ function Toggle({ users, userId, lists, setLists, show, setShow }) {
                     show = {show} 
                     setShow = {setShow} 
                     archived = {true}
+                    modalId = {modalId}
+                    setModalId = {setModalId}
                 />
             )}
         </>
