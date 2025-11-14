@@ -29,7 +29,7 @@ function App() {
     shopLists: [
       {
         id: '0',
-        title: 'list',
+        title: 'auto',
 
         items: [
           {
@@ -50,7 +50,7 @@ function App() {
       },
       {
         id: '1',
-        title: '',
+        title: 'dům',
 
         items: [
         ],

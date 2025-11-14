@@ -9,19 +9,33 @@ function Dashboard({ users, shopLists, userId }) {
 
     return (
         <>
-            <AddList 
-                setLists = {setLists}
-                owner = {userId} 
-                users = {users} 
+            <AddList
+                lists = {lists}
+                setLists = {setLists} 
+                userId = {userId} 
+                users = {users}
                 show = {show} 
                 setShow = {setShow}
             />
 
-            {lists.filter((item) => item.archived === false).map((item) => 
-                <Card users = {users} shopList = {item} userId = {userId}/>)
-            }
+            <Card 
+                users = {users} 
+                userId = {userId} 
+                lists = {lists} 
+                setLists = {setLists} 
+                show = {show} 
+                setShow = {setShow} 
+                archived = {false}
+            />
 
-            <Toggle lists = {lists}/>
+            <Toggle 
+                users = {users} 
+                userId = {userId} 
+                lists = {lists} 
+                setLists = {setLists} 
+                show = {show} 
+                setShow = {setShow} 
+            />
         </>
     )
 }
