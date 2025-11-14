@@ -35,13 +35,18 @@ function App() {
           {
             id: '1',
             name: 'key',
-            status: true
+            status: false
           },
           {
             id: '2',
             name: 'value',
             status: false
-          }
+          },
+          {
+            id: '3',
+            name: 'value',
+            status: false
+          },
         ],
 
         owner: '2',

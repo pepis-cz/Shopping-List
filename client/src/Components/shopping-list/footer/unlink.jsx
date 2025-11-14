@@ -1,12 +1,12 @@
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 
-function Unlink({ members, userId, setModalId }) {
-    const [value, setValue] = useState(members);
+function Unlink({ members, userId, setModalId, setValue }) {
+    const [array, setArray] = useState(members);
 
     const handleDelete = (id) => {
         setModalId(null);
-        setValue((prev) => prev.filter((item) => item !== id));
+        setArray((prev) => prev.filter((item) => item !== id));
     }
 
     return (

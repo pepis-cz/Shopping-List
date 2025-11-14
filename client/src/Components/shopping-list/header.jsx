@@ -3,11 +3,16 @@ import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 
-function Header({ title, archived }) {
+function Header({ title, setValue }) {
     const [editing, setEditing] = useState(false);
+
     const [name, setName] = useState(title);
 
-    const saveName = () => {setEditing(false)}
+    const saveName = () => {
+        setValue(name);
+        setEditing(false);
+
+    }
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -56,7 +61,6 @@ function Header({ title, archived }) {
                             <i className = 'bi bi-pencil'/>
                         </Button>
 
-                            {archived && <p>(Archivován)</p>}
                     </div>
                 </Modal.Title>
             )}

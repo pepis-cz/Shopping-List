@@ -4,9 +4,9 @@ import { useState } from 'react'
 import Cards from './card';
 
 function Dashboard({ users, shopLists, userId }) {
-    const [show, setShow] = useState(false);
     const [lists, setLists] = useState(shopLists);
     const [modalId, setModalId] = useState(null);
+    const [show, setShow] = useState(false);
 
     return (
         <>

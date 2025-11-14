@@ -3,11 +3,12 @@ import Render from './item-render'
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 
-function Body({ items }) {
+function Body({ items, setValue }) {
 
-    const[array, setArray] = useState(items)
     const [visibility, setVisibility] = useState(true);
     const [editingId, setEditingId] = useState(null);
+
+    const [array, setArray] = useState(items);
 
     const handleCreate = () => {
         setEditingId(null);
@@ -18,13 +19,21 @@ function Body({ items }) {
         }
 
         setArray(prev => ([...prev, newItem]));
+        setValue(array);
         setEditingId(newItem.id);
     };
 
     return (
         <Modal.Body>
             <div>
-                <Render array = {array} setArray = {setArray} editingId = {editingId} setEditingId = {setEditingId} boolean = {false}/>
+                <Render 
+                    array = {array} 
+                    setArray = {setArray} 
+                    editingId = {editingId} 
+                    setEditingId = {setEditingId} 
+                    boolean = {false}
+                    setValue = {setValue}
+                />
 
                 <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {handleCreate}>
                     <i className = 'bi bi-plus'/> Přidat položku
@@ -55,6 +64,7 @@ function Body({ items }) {
                         editingId = {editingId} 
                         setEditingId = {setEditingId} 
                         boolean = {true}
+                        setValue = {setValue}
                     />
                 }
             </div>

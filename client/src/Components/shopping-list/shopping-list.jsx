@@ -2,8 +2,11 @@ import Header from "./header";
 import Footer from "./footer/footer";
 import Body from "./body/body";
 import Modal from 'react-bootstrap/Modal'
+import { useState } from 'react'
 
 function ShoppingList({ users, shopList, userId, show, setShow, lists, setLists, setModalId }) {
+
+    const [value, setValue] = useState(shopList);
 
     const handleClose = () => {
         setModalId(null);
@@ -13,25 +16,27 @@ function ShoppingList({ users, shopList, userId, show, setShow, lists, setLists,
     return (
         <Modal show = {show} onHide = {handleClose}>
             <Header
-                title = {shopList.title}
-                archived = {shopList.archived}
+                title = {value.title}
+                setValue = {setValue}
             />
 
             <Body
-                items = {shopList.items}
+                items = {value.items}
+                setValue = {setValue}
             />
 
             <Footer
-                archived = {shopList.archived}
+                archived = {value.archived}
                 users = {users}
-                members = {shopList.members}
+                members = {value.members}
                 userId = {userId}
-                owner = {shopList.owner}
-                id = {shopList.id}
+                owner = {value.owner}
+                id = {value.id}
                 setShow = {setShow}
                 lists = {lists}
                 setLists = {setLists}
                 setModalId = {setModalId}
+                setValue = {setValue}
             />
         </Modal>
     )

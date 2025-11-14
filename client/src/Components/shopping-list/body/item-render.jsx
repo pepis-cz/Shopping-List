@@ -2,18 +2,20 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-function Render({ array, setArray, editingId, setEditingId, boolean }) {
+function Render({ array, setArray, editingId, setEditingId, boolean, setValue }) {
 
     const handleStatus = (id) => {
         const update = array.map((i) => i.id === id ? {...i, status: !boolean } : i);
         setArray(update);
+        setValue(array);
     }
 
     const handleRemove = (id) => {
-        setArray((prev) => prev.filter((item) => item.id !== id))
+        setArray((prev) => prev.filter((item) => item.id !== id));
+        setValue(array);
     };
 
-    const saveName = () => setEditingId(null)
+    const saveName = () => setEditingId(null);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -49,6 +51,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean }) {
                                     const update = array.map((item) => 
                                         item.id === editingId ? { ...item, name: e.target.value } : item);
                                         setArray(update);
+                                        setValue(array);
                                 }
                             }
 

@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form'
 
 import { useState } from 'react'
 
-function Members({ users, members, userId, owner }) {
+function Members({ users, members, userId, owner, setValue }) {
 
     const [view, setView] = useState(false);
-    const [member, setMember] = useState([...members]);
+    const [member, setMember] = useState(members);
 
     const [email, setEmail] = useState('')
     const [exist, setExist] = useState(true);
@@ -23,14 +23,15 @@ function Members({ users, members, userId, owner }) {
         if (found) {
             setMember(prev => [...prev, found.id]);
             setEmail('');
+            setValue(member);
         }else{
             setExist(false);
         }
     }
 
     const handleRemove = (id) => {
-
         setMember((prev) => prev.filter((item) => item !== id));
+        setValue(member);
     }
 
     const onHide = () => setView(false);
