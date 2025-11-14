@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button'
 import Card from './card';
+import { useState } from 'react'
 
-function Toggle({ lists }) {
+function Toggle({ users, userId, lists, setLists, show, setShow }) {
 
     const [toggle, setToggle] = useState(false);
     const handleToggle = () => setToggle(!toggle);
@@ -13,9 +14,15 @@ function Toggle({ lists }) {
             </Button>
 
             {toggle && (
-                lists.filter((item) => item.archived === true).map((item) =>
-                    <Card users = {users} shopList = {item} userId = {userId}/>
-                )
+                <Card 
+                    users = {users} 
+                    userId = {userId} 
+                    lists = {lists} 
+                    setLists = {setLists} 
+                    show = {show} 
+                    setShow = {setShow} 
+                    archived = {true}
+                />
             )}
         </>
     )
