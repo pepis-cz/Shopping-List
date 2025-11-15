@@ -13,7 +13,7 @@ function Archive({ archived, setValue }) {
             size = 'lg' 
             onClick = {handleClick}
         >
-            { archived ? <i className = 'bi bi-recycle'/> : <i className = 'bi bi-archive'/> }
+            { archived ? <i className = 'bi bi-archive-fill'/> : <i className = 'bi bi-archive'/> }
         </Button>
     )
 }

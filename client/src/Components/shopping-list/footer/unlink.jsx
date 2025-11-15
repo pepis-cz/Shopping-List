@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 
-function Unlink({ members, userId, id, setModalId, setLists }) {
+function Unlink({ members, userId, id, setLists, setShow }) {
     const [member, setMember] = useState(members);
 
     const handleDelete = () => {
@@ -10,7 +10,7 @@ function Unlink({ members, userId, id, setModalId, setLists }) {
                 setLists(prev => prev.map(item => item.id === id ? {...item, members: newMember} : item));
                 return newMember;
             });
-        setModalId(null);
+        setShow(false);
     }
 
     return (

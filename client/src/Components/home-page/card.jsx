@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 
-function Cards({ users, userId, lists, setLists, archived, modalId, setModalId }) {
+function Cards({ users, userId, lists, setLists, archived, show, setShow }) {
 
     const handleStatus = (id) => {
         setLists(prev => {
@@ -15,15 +15,15 @@ function Cards({ users, userId, lists, setLists, archived, modalId, setModalId }
         });
     }
 
-    const handleClick = (id) => {
-        setModalId(id);
+    const handleClick = () => {
+        setShow(true)
     }
 
     return (
         <>
             {lists.filter(item => item.archived === archived && item.members.includes(userId)).map(obj => (
                 <>
-                    <Card style={{ width: '18rem' }} onClick = {() => handleClick(obj.id)} key = {obj.id}>
+                    <Card style={{ width: '300px' }} onClick = {handleClick} key = {obj.id}>
                         <Card.Header>
                             {obj.title === '' ? "list" : obj.title}
                         </Card.Header>
@@ -35,16 +35,24 @@ function Cards({ users, userId, lists, setLists, archived, modalId, setModalId }
                             {obj.items.length !== 0 &&
                                 <>
                                     {obj.items.filter(item => item.status === false).slice(0, 5).map((item) => 
-                                        <div style = {{display: "flex"}} key = {item.id}>
-                                            <ListGroup.Item>
-                                                <Button onClick = {(e) => {
+                                        <div key = {item.id}>
+                                            <ListGroup.Item style = {{display: "flex"}}>
+                                                <Button variant = 'light' style = {{background: 'transparent', marginRight: '5px'}} onClick = {(e) => {
                                                     e.stopPropagation();
                                                     handleStatus(item.id);
                                                 }}>
                                                     <i className = 'bi bi-square'/>
                                                 </Button>
 
-                                                {item.name}
+                                                <span style = {{
+                                                    marginTop: '6px',
+                                                    width: '180px',
+                                                    overflow: "hidden", 
+                                                    textOverflow: 'ellipsis',
+                                                    whiteSpace: 'nowrap'
+                                                }}>
+                                                    {item.name}
+                                                </span>
                                             </ListGroup.Item>
                                         </div>
                                     )}
@@ -68,16 +76,15 @@ function Cards({ users, userId, lists, setLists, archived, modalId, setModalId }
                         </Card.Body>
                     </Card>
                     
-                    {modalId === obj.id &&
-                        <ShoppingList
-                            users = {users}
-                            shopList = {obj}
-                            userId = {userId}
-                            lists = {lists}
-                            setLists = {setLists}
-                            setModalId = {setModalId}
-                        />
-                    }
+                    <ShoppingList
+                        users = {users}
+                        shopList = {obj}
+                        userId = {userId}
+                        lists = {lists}
+                        setLists = {setLists}
+                        show = {show}
+                        setShow = {setShow}
+                    />
                 </>
             ))}
         </>

@@ -47,15 +47,17 @@ function Header({ title, setValue }) {
                 <Modal.Title>
                     <div style = {{display: 'flex', fontSize: "20px"}}>
                         
-                        {name === '' ? (
-                            <div style = {{paddingTop: "7px", opacity: '80%'}}>
-                                Název
+                            <div style = {{
+                                marginTop: "6px", 
+                                marginRight: '5px', 
+                                overflow: "hidden", 
+                                maxWidth: '410px',
+                                textOverflow: 'ellipsis', 
+                                whiteSpace: 'nowrap', 
+                                opacity: name === '' ? '80%' : '100%'
+                            }}> 
+                                {name === '' ? 'Název' : name}
                             </div>
-                        ) : (
-                            <div style = {{paddingTop: "7px", overflow: "hidden", textOverflow: 'ellipsis'}}> 
-                                {name}
-                            </div>
-                        )}
 
                         <Button style={{background: "transparent"}} variant = 'light' size = 'lg' onClick = {() => setEditing(true)}>
                             <i className = 'bi bi-pencil'/>

@@ -45,14 +45,12 @@ function Members({ users, members, userId, owner, setValue }) {
 
     return (
         <>
-            <Button style={{
-                background: "transparent"
-            }} 
+            <Button style={{background: "transparent"}} 
                 variant = 'light' 
                 size = 'lg' 
                 onClick = {() => setView(true)}
             >
-                <i className = 'bi bi-person'/>
+                <i className = 'bi bi-people'/>
             </Button>
 
             <Modal show = {view} onHide = {onHide}>
@@ -66,36 +64,43 @@ function Members({ users, members, userId, owner, setValue }) {
                             const member = usersMap.get(id);
 
                             return (
-                                <ListGroup.Item key = {member.id}>
-                                        <i className = 'bi bi-person'/>
-                                        {member.email}
-                                        {member.id === owner && <span> (Vlastník)</span>}
+                                <ListGroup.Item style = {{display: 'flex'}} key = {member.id}>
+                                        <div style = {{marginTop: '1px'}}>
+                                            <i style = {{marginRight: '7px'}} className = 'bi bi-person'/>
+                                            {member.email}
+                                            {member.id === owner && <span> (Vlastník)</span>}
+                                        </div>
 
                                         {userId === owner && member.id !== owner && (
-                                            <Button variant = 'light' onClick = {() => handleRemove(member.id)}>
+                                            <Button style = {{marginLeft: '5px', background: 'transparent'}} size = 'sm' variant = 'light' onClick = {() => handleRemove(member.id)}>
                                                 <i className = 'bi bi-x-lg'/>
                                             </Button>
                                         )}
                                 </ListGroup.Item>
                             )
                         })}
-
+    
                         <ListGroup.Item>
                             {owner === userId &&
                                 <Form onSubmit = {handleCreate}>
-                                    <Form.Control
-                                        type = 'email'
-                                        value = {email}
-                                        placeholder = 'E-mailová adresa pro sdílení'
-                                        onChange = {(e) => {
-                                            setEmail(e.target.value);
-                                            setExist(true);
+                                    <div style = {{display: 'flex'}}>
+                                        <Form.Control style = {{
+                                            maxWidth: '440px',
+                                            height: '32px'
                                         }}
-                                    />
+                                            type = 'email'
+                                            value = {email}
+                                            placeholder = 'E-mailová adresa pro sdílení'
+                                            onChange = {(e) => {
+                                                setEmail(e.target.value);
+                                                setExist(true);
+                                            }}
+                                        />
 
-                                    <Button variant = 'light' type = 'submit'>
-                                        <i className = 'bi bi-check2'/>
-                                    </Button>
+                                        <Button style = {{background: 'transparent', marginLeft: '5px'}} variant = 'light' size = 'sm' type = 'submit'>
+                                            <i className = 'bi bi-check2'/>
+                                        </Button>
+                                    </div>
 
                                     {!exist && 
                                         <Form.Text>

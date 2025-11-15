@@ -5,18 +5,22 @@ import Cards from './card';
 
 function Dashboard({ users, shopLists, userId }) {
     const [lists, setLists] = useState(shopLists);
-    const [modalId, setModalId] = useState(null);
-    console.log(lists);
+    const [show, setShow] = useState(false);
+    console.log(show);
 
     return (
         <>
+            <div style = {{background: "beige", fontSize: '40px', paddingTop: '10px', paddingBottom: '5px', paddingLeft: "10px"}}>
+                <p>Sopping List</p>
+            </div>
+
             <AddList
                 lists = {lists}
                 setLists = {setLists} 
                 userId = {userId} 
                 users = {users}
-                modalId = {modalId}
-                setModalId = {setModalId}
+                show = {show}
+                setShow = {setShow}
             />
 
             <Cards 
@@ -25,17 +29,17 @@ function Dashboard({ users, shopLists, userId }) {
                 lists = {lists} 
                 setLists = {setLists} 
                 archived = {false}
-                modalId = {modalId}
-                setModalId = {setModalId}
+                show = {show}
+                setShow = {setShow}
             />
 
             <Toggle 
                 users = {users} 
                 userId = {userId} 
                 lists = {lists} 
-                setLists = {setLists} 
-                modalId = {modalId} 
-                setModalId = {setModalId}
+                setLists = {setLists}
+                show = {show}
+                setShow = {setShow}
             />
         </>
     )
