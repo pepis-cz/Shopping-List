@@ -21,17 +21,24 @@ function Members({ users, members, userId, owner, setValue }) {
         const found = users.find((item) => item.email === email);
 
         if (found) {
-            setMember(prev => [...prev, found.id]);
+            setMember(prev => {
+                const newMember = [...prev, found.id];
+                setValue(prev => ({...prev, members: newMember}));
+                return newMember;
+            })
             setEmail('');
-            setValue(member);
+
         }else{
             setExist(false);
         }
     }
 
     const handleRemove = (id) => {
-        setMember((prev) => prev.filter((item) => item !== id));
-        setValue(member);
+        setMember(prev => {
+            const newMember = prev.filter(item => item !== id);
+            setValue(prev => ({...prev, members: newMember}));
+            return newMember;
+        })
     }
 
     const onHide = () => setView(false);

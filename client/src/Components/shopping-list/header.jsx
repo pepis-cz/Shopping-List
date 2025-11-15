@@ -9,7 +9,7 @@ function Header({ title, setValue }) {
     const [name, setName] = useState(title);
 
     const saveName = () => {
-        setValue(name);
+        setValue(prev => ({...prev, title: name}));
         setEditing(false);
 
     }

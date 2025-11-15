@@ -6,7 +6,7 @@ import Cards from './card';
 function Dashboard({ users, shopLists, userId }) {
     const [lists, setLists] = useState(shopLists);
     const [modalId, setModalId] = useState(null);
-    const [show, setShow] = useState(false);
+    console.log(lists);
 
     return (
         <>
@@ -15,8 +15,6 @@ function Dashboard({ users, shopLists, userId }) {
                 setLists = {setLists} 
                 userId = {userId} 
                 users = {users}
-                show = {show} 
-                setShow = {setShow}
                 modalId = {modalId}
                 setModalId = {setModalId}
             />
@@ -26,8 +24,6 @@ function Dashboard({ users, shopLists, userId }) {
                 userId = {userId} 
                 lists = {lists} 
                 setLists = {setLists} 
-                show = {show} 
-                setShow = {setShow} 
                 archived = {false}
                 modalId = {modalId}
                 setModalId = {setModalId}
@@ -38,8 +34,6 @@ function Dashboard({ users, shopLists, userId }) {
                 userId = {userId} 
                 lists = {lists} 
                 setLists = {setLists} 
-                show = {show} 
-                setShow = {setShow} 
                 modalId = {modalId} 
                 setModalId = {setModalId}
             />

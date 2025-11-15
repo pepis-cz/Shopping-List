@@ -18,8 +18,11 @@ function Body({ items, setValue }) {
             status: false
         }
 
-        setArray(prev => ([...prev, newItem]));
-        setValue(array);
+        setArray(prev => {
+            const newArray = [...prev, newItem];
+            setValue(prev => ({...prev, items: newArray}));
+            return newArray;
+        });
         setEditingId(newItem.id);
     };
 

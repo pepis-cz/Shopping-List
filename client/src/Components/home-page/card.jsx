@@ -3,24 +3,25 @@ import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 
-function Cards({ users, userId, lists, setLists, show, setShow, archived, modalId, setModalId }) {
+function Cards({ users, userId, lists, setLists, archived, modalId, setModalId }) {
 
     const handleStatus = (id) => {
-        setLists(prev => prev.map(
-            obj => ({...obj, items: obj.items.map(
-                item => item.id === id ? {status: !item.status} : item)
-            }) 
-        ));
+        setLists(prev => {
+            return prev.map(
+                obj => ({...obj, items: obj.items.map(
+                    item => item.id === id ? {...item, status: !item.status} : item
+                )})
+            )
+        });
     }
 
     const handleClick = (id) => {
-        setShow(true);
         setModalId(id);
     }
 
     return (
         <>
-            {lists.filter(item => item.archived === archived).map(obj => (
+            {lists.filter(item => item.archived === archived && item.members.includes(userId)).map(obj => (
                 <>
                     <Card style={{ width: '18rem' }} onClick = {() => handleClick(obj.id)} key = {obj.id}>
                         <Card.Header>
@@ -72,8 +73,6 @@ function Cards({ users, userId, lists, setLists, show, setShow, archived, modalI
                             users = {users}
                             shopList = {obj}
                             userId = {userId}
-                            show = {show}
-                            setShow = {setShow}
                             lists = {lists}
                             setLists = {setLists}
                             setModalId = {setModalId}

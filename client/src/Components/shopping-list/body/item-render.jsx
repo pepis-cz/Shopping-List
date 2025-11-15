@@ -5,14 +5,19 @@ import Form from 'react-bootstrap/Form'
 function Render({ array, setArray, editingId, setEditingId, boolean, setValue }) {
 
     const handleStatus = (id) => {
-        const update = array.map((i) => i.id === id ? {...i, status: !boolean } : i);
-        setArray(update);
-        setValue(array);
+        setArray(prev => {
+            const newArray = prev.map((i) => i.id === id ? {...i, status: !boolean } : i);
+            setValue(prev => ({...prev, items: newArray}));
+            return newArray;
+        })
     }
 
     const handleRemove = (id) => {
-        setArray((prev) => prev.filter((item) => item.id !== id));
-        setValue(array);
+        setArray(prev => {
+            const newArray = prev.filter(item => item.id !== id);
+            setValue(prev => ({...prev, items: newArray}));
+            return newArray;
+        })
     };
 
     const saveName = () => setEditingId(null);
@@ -48,10 +53,12 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
                             value={item.name}
                             onChange = {
                                 (e) => {
-                                    const update = array.map((item) => 
-                                        item.id === editingId ? { ...item, name: e.target.value } : item);
-                                        setArray(update);
-                                        setValue(array);
+                                    setArray(prev => {
+                                        const newArray = prev.map(item => 
+                                            item.id === editingId ? { ...item, name: e.target.value } : item);
+                                            setValue(prev => ({...prev, items: newArray}));
+                                            return newArray;
+                                    })
                                 }
                             }
 
