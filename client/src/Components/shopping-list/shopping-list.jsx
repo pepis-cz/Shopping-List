@@ -4,13 +4,14 @@ import Body from "./body/body";
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react'
 
-function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow }) {
+function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow, setListId }) {
 
     const [value, setValue] = useState(shopList);
 
     const handleClose = () => {
         setLists(prev => prev.map(item => item.id === value.id ? value : item));
         setShow(false);
+        setListId(null);
     }
 
     return (

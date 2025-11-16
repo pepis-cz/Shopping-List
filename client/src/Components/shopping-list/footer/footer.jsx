@@ -37,6 +37,10 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                     archived = {archived}
                     setValue = {setValue}
                 />
+
+                {archived &&
+                <p style = {{alignItems: 'center', paddingTop: '10px', marginBottom: '0px'}}>(archivován)</p>
+                }
             </div>
 
             <div>

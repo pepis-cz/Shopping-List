@@ -2,26 +2,40 @@ import Button from 'react-bootstrap/Button'
 import Cards from './card';
 import { useState } from 'react'
 
-function Toggle({ users, userId, lists, setLists, show, setShow}) {
+function Toggle({ users, userId, lists, setLists, show, setShow, listId, setListId}) {
 
     const [toggle, setToggle] = useState(false);
     const handleToggle = () => setToggle(!toggle);
 
     return (
         <>
-            <Button variant = 'light' onClick = {handleToggle}>
+            <Button style = {{marginLeft: '20px', marginBottom: '25px'}} variant = 'secondary' onClick = {handleToggle}>
                 {toggle ? "Skrýt archivované" : "Zobrazit archivované"}
             </Button>
 
-            {toggle && (
+            {toggle ? (
                 <Cards
                     users = {users} 
                     userId = {userId} 
                     lists = {lists} 
                     setLists = {setLists} 
-                    archived = {true} 
+                    condition = {false} 
                     show = {show} 
-                    setShow = {setShow}
+                    setShow = {setShow} 
+                    listId = {listId} 
+                    setListId = {setListId}
+                />
+            ) : (
+                <Cards
+                    users = {users} 
+                    userId = {userId} 
+                    lists = {lists} 
+                    setLists = {setLists} 
+                    condition = {true} 
+                    show = {show} 
+                    setShow = {setShow} 
+                    listId = {listId} 
+                    setListId = {setListId}
                 />
             )}
         </>

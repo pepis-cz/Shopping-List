@@ -33,31 +33,41 @@ function App() {
 
         items: [
           {
+            id: '0',
+            name: 'pneu',
+            status: false
+          },
+          {
             id: '1',
-            name: 'key',
+            name: 'olej',
             status: false
           },
           {
             id: '2',
-            name: 'value',
+            name: 'WD-40',
             status: false
           },
           {
             id: '3',
-            name: 'value',
+            name: 'benzín',
             status: false
-          },
+          }
         ],
 
         owner: '2',
         members: ['2', '1'],
-        archived: true
+        archived: false
       },
       {
-        id: '1',
+        id: '2',
         title: 'dům',
 
         items: [
+          {
+            id: '0',
+            name: 'kladivo',
+            status: false
+          }
         ],
 
         owner: '3',

@@ -1,11 +1,11 @@
 import Toggle from './toggle-archived';
 import AddList from './add-list';
 import { useState } from 'react'
-import Cards from './card';
 
 function Dashboard({ users, shopLists, userId }) {
     const [lists, setLists] = useState(shopLists);
     const [show, setShow] = useState(false);
+    const [listId, setListId] = useState(null);
     console.log(show);
 
     return (
@@ -21,16 +21,8 @@ function Dashboard({ users, shopLists, userId }) {
                 users = {users}
                 show = {show}
                 setShow = {setShow}
-            />
-
-            <Cards 
-                users = {users} 
-                userId = {userId} 
-                lists = {lists} 
-                setLists = {setLists} 
-                archived = {false}
-                show = {show}
-                setShow = {setShow}
+                listId = {listId}
+                setListId = {setListId}
             />
 
             <Toggle 
@@ -40,7 +32,11 @@ function Dashboard({ users, shopLists, userId }) {
                 setLists = {setLists}
                 show = {show}
                 setShow = {setShow}
+                listId = {listId}
+                setListId = {setListId}
             />
+
+            <div style = {{marginBottom: '50px'}}></div>
         </>
     )
 }
