@@ -9,7 +9,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
         setLists(prev => {
             return prev.map(
                 obj => ({...obj, items: obj.items.map(
-                    item => item.id === id ? {...item, status: !item.status} : item
+                    item => item._id === id ? {...item, status: !item.status} : item
                 )})
             )
         });
@@ -25,7 +25,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
         <div style = {{justifyContent: 'center', display: 'flex', flexWrap: 'wrap', gap: '16px'}}>
             {lists.filter(item => ( condition ? item.archived === false && item.members.includes(userId) : item.members.includes(userId) )).map(obj => (
                 <div>
-                    <Card style={{width: '300px', minHeight: '130px'}} onClick = {() => handleClick(obj.id)} key = {obj.id}>
+                    <Card style={{width: '300px', minHeight: '130px'}} onClick = {() => handleClick(obj._id)} key = {obj._id}>
                         <Card.Header style = {{
                                 maxWidth: '300px', 
                                 display: 'flex', 
@@ -56,11 +56,11 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                                 {obj.items.filter(item => item.status === false).length !== 0 ?
                                     <>
                                         {obj.items.filter(item => item.status === false).slice(0, 3).map((item) => 
-                                            <div key = {item.id}>
+                                            <div key = {item._id}>
                                                 <ListGroup.Item style = {{display: "flex"}}>
                                                     <Button variant = 'light' style = {{background: 'transparent', marginRight: '5px'}} onClick = {(e) => {
                                                         e.stopPropagation();
-                                                        handleStatus(item.id);
+                                                        handleStatus(item._id);
                                                     }}>
                                                         <i className = 'bi bi-square'/>
                                                     </Button>
@@ -101,7 +101,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                         </Card.Body>
                     </Card>
                     
-                    {listId === obj.id &&
+                    {listId === obj._id &&
                         <ShoppingList
                             users = {users}
                             shopList = {obj}

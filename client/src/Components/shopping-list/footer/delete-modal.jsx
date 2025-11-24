@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 function Warning({ warn, setWarn, setLists, id }) {
     const handleDelete = (id) => {
         setWarn(false);
-        setLists(prev => prev.filter((item) => item.id !== id));
+        setLists(prev => prev.filter((item) => item._id !== id));
     }
 
     return (

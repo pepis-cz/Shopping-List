@@ -7,7 +7,7 @@ function Unlink({ members, userId, id, setLists, setShow }) {
     const handleDelete = () => {
             setMember(prev => {
                 const newMember = prev.filter(item => item !== userId);
-                setLists(prev => prev.map(item => item.id === id ? {...item, members: newMember} : item));
+                setLists(prev => prev.map(item => item._id === id ? {...item, members: newMember} : item));
                 return newMember;
             });
         setShow(false);

@@ -13,7 +13,7 @@ function Body({ items, setValue }) {
     const handleCreate = () => {
         setEditingId(null);
         const newItem = {
-            id: array.length ? Math.max(...array.map((item) => item.id)) + 1 : 1,
+            id: array.length ? Math.max(...array.map((item) => item._id)) + 1 : 1,
             name: null,
             status: false
         }
@@ -23,7 +23,7 @@ function Body({ items, setValue }) {
             setValue(prev => ({...prev, items: newArray}));
             return newArray;
         });
-        setEditingId(newItem.id);
+        setEditingId(newItem._id);
     };
 
     return (

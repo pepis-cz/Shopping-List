@@ -6,7 +6,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
 
     const handleStatus = (id) => {
         setArray(prev => {
-            const newArray = prev.map((i) => i.id === id ? {...i, status: !boolean } : i);
+            const newArray = prev.map((i) => i._id === id ? {...i, status: !boolean } : i);
             setValue(prev => ({...prev, items: newArray}));
             return newArray;
         })
@@ -14,7 +14,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
 
     const handleRemove = (id) => {
         setArray(prev => {
-            const newArray = prev.filter(item => item.id !== id);
+            const newArray = prev.filter(item => item._id !== id);
             setValue(prev => ({...prev, items: newArray}));
             return newArray;
         })
@@ -31,19 +31,19 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
     return (
     <ListGroup>
         {array.filter(item => item.status === boolean).map((item) => (
-            <ListGroup.Item style = {{display: 'flex'}} key = {item.id}>
+            <ListGroup.Item style = {{display: 'flex'}} key = {item._id}>
                 <Button style = {{
                     background: "transparent",
                     marginRight: "5px"
                 }}
                     variant = 'light'
                     size = 'lg'
-                    onClick = {() => handleStatus(item.id)}
+                    onClick = {() => handleStatus(item._id)}
                 >
                     <i className = {item.status ? 'bi bi-check-square' : 'bi bi-square'}/>
                 </Button>
 
-                {item.id === editingId ? 
+                {item._id === editingId ? 
                     <Form style = {{
                         width: "350px", 
                         marginTop: "5px"
@@ -55,7 +55,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
                                 (e) => {
                                     setArray(prev => {
                                         const newArray = prev.map(item => 
-                                            item.id === editingId ? { ...item, name: e.target.value } : item);
+                                            item._id === editingId ? { ...item, name: e.target.value } : item);
                                             setValue(prev => ({...prev, items: newArray}));
                                             return newArray;
                                     })
@@ -77,7 +77,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
                     }} 
                         variant = 'light' 
                         size = 'lg' 
-                        onClick = {() => setEditingId(item.id)}
+                        onClick = {() => setEditingId(item._id)}
                     >
                         {item.name}
                     </Button>
@@ -88,7 +88,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
                 }} 
                     variant = 'light' 
                     size = 'lg' 
-                    onClick = {() => handleRemove(item.id)}
+                    onClick = {() => handleRemove(item._id)}
                 >
                     <i className = 'bi bi-x-lg'/>
                 </Button>

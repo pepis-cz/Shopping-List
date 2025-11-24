@@ -9,7 +9,7 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
     const [value, setValue] = useState(shopList);
 
     const handleClose = () => {
-        setLists(prev => prev.map(item => item.id === value.id ? value : item));
+        setLists(prev => prev.map(item => item._id === value._id ? value : item));
         setShow(false);
         setListId(null);
     }
@@ -32,7 +32,7 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
                 members = {value.members}
                 userId = {userId}
                 owner = {value.owner}
-                id = {value.id}
+                id = {value._id}
                 lists = {lists}
                 setLists = {setLists}
                 setShow = {setShow}

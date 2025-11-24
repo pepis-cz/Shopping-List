@@ -5,7 +5,7 @@ function AddList({ lists, setLists, userId, users, show, setShow, listId, setLis
 
     const handleAdd = () => {
         const newList = {
-            id: lists.length ? Math.max( ...lists.map(item => item.id)) + 1 : 0,
+            _id: lists.length ? Math.max( ...lists.map(item => item._id)) + 1 : 0,
             title: '',
 
             items: [],
@@ -17,7 +17,7 @@ function AddList({ lists, setLists, userId, users, show, setShow, listId, setLis
 
         setLists(prev => [...prev, newList]);
         setShow(true);
-        setListId(newList.id);
+        setListId(newList._id);
     }
 
     return (

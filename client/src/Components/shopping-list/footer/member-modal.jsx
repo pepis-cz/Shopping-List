@@ -13,7 +13,7 @@ function Members({ users, members, userId, owner, setValue }) {
     const [email, setEmail] = useState('')
     const [exist, setExist] = useState(true);
 
-    const usersMap = new Map(users.map(item => [item.id, item]));
+    const usersMap = new Map(users.map(item => [item._id, item]));
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ function Members({ users, members, userId, owner, setValue }) {
 
         if (found) {
             setMember(prev => {
-                const newMember = [...prev, found.id];
+                const newMember = [...prev, found._id];
                 setValue(prev => ({...prev, members: newMember}));
                 return newMember;
             })
@@ -64,15 +64,15 @@ function Members({ users, members, userId, owner, setValue }) {
                             const member = usersMap.get(id);
 
                             return (
-                                <ListGroup.Item style = {{display: 'flex'}} key = {member.id}>
+                                <ListGroup.Item style = {{display: 'flex'}} key = {member._id}>
                                         <div style = {{marginTop: '1px'}}>
                                             <i style = {{marginRight: '7px'}} className = 'bi bi-person'/>
                                             {member.email}
-                                            {member.id === owner && <span> (Vlastník)</span>}
+                                            {member._id === owner && <span> (Vlastník)</span>}
                                         </div>
 
-                                        {userId === owner && member.id !== owner && (
-                                            <Button style = {{marginLeft: '5px', background: 'transparent'}} size = 'sm' variant = 'light' onClick = {() => handleRemove(member.id)}>
+                                        {userId === owner && member._id !== owner && (
+                                            <Button style = {{marginLeft: '5px', background: 'transparent'}} size = 'sm' variant = 'light' onClick = {() => handleRemove(member._id)}>
                                                 <i className = 'bi bi-x-lg'/>
                                             </Button>
                                         )}

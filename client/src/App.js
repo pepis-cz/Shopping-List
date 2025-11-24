@@ -6,82 +6,55 @@ import Dashboard from './Components/home-page/dashboard';
 
 function App() {
 
-  const InitialData = {
+  const mockData = {
     users: [
       {
-        id: '1',
+        _id: '0',
         email: 'a@seznam.cz'
       },
       {
-        id: '2',
-        email: 'b@gmail.com'
+        _id: '1',
+        email: 'b@seznam.cz'
       },
       {
-        id: '3',
+        _id: '2',
         email: 'c@seznam.cz'
       },
       {
-        id: '4',
-        email: 'd@gmail.com'
+        _id: '3',
+        email: 'd@seznam.cz'
       }
     ],
+
+    userId: '1',
   
     shopLists: [
       {
-        id: '0',
-        title: 'auto',
+        _id: '4',
+        title: 'skleník',
 
         items: [
           {
-            id: '0',
-            name: 'pneu',
-            status: false
-          },
-          {
-            id: '1',
-            name: 'olej',
-            status: false
-          },
-          {
-            id: '2',
-            name: 'WD-40',
-            status: false
-          },
-          {
-            id: '3',
-            name: 'benzín',
+            _id: '5',
+            name: 'pivo',
             status: false
           }
         ],
 
         owner: '2',
-        members: ['2', '1'],
-        archived: false
-      },
-      {
-        id: '2',
-        title: 'dům',
+        members: ['3', '1'],
 
-        items: [
-          {
-            id: '0',
-            name: 'kladivo',
-            status: false
-          }
-        ],
-
-        owner: '3',
-        members: ['3', '2'],
         archived: false
       }
-    ],
-
-    userId: '2'
+    ]
   }
+
+  //vlozit server data sem a take fetch + backend api
+  //prepinac mezi mockdata a serverdata
 
   return (
     <>
-      <Dashboard users = {InitialData.users} shopLists = {InitialData.shopLists} userId = {InitialData.userId}/>
+      <Dashboard users = {mockData.users} shopLists = {mockData.shopLists} userId = {mockData.userId}/>
     </>
   );
 }
