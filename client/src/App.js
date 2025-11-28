@@ -49,9 +49,6 @@ function App() {
     ]
   }
 
-  //vlozit server data sem a take fetch + backend api
-  //prepinac mezi mockdata a serverdata
-
   return (
     <>
       <Dashboard users = {mockData.users} shopLists = {mockData.shopLists} userId = {mockData.userId}/>

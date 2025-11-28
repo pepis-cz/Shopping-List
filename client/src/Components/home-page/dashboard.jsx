@@ -3,10 +3,14 @@ import AddList from './add-list';
 import { useState } from 'react'
 
 function Dashboard({ users, shopLists, userId }) {
+
+    //data? data : shopLists
+    //backend list, provider
+    //handleList(userId)
     const [lists, setLists] = useState(shopLists);
+
     const [show, setShow] = useState(false);
     const [listId, setListId] = useState(null);
-    console.log(show);
 
     return (
         <>
@@ -15,23 +19,29 @@ function Dashboard({ users, shopLists, userId }) {
             </div>
 
             <AddList
-                lists = {lists}
-                setLists = {setLists} 
-                userId = {userId} 
+                userId = {userId}
                 users = {users}
+
+                lists = {lists}
+                setLists = {setLists}
+
                 show = {show}
                 setShow = {setShow}
+
                 listId = {listId}
                 setListId = {setListId}
             />
 
             <Toggle 
-                users = {users} 
-                userId = {userId} 
-                lists = {lists} 
+                users = {users}
+                userId = {userId}
+
+                lists = {lists}
                 setLists = {setLists}
+
                 show = {show}
                 setShow = {setShow}
+
                 listId = {listId}
                 setListId = {setListId}
             />

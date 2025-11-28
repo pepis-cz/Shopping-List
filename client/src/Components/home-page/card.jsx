@@ -5,6 +5,9 @@ import Card from 'react-bootstrap/Card'
 
 function Cards({ users, userId, lists, setLists, condition, show, setShow, listId, setListId }) {
 
+    //const items = map jak line 12-14
+    //
+    //handleUpdate(dtoIn)
     const handleStatus = (id) => {
         setLists(prev => {
             return prev.map(
@@ -15,11 +18,14 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
         });
     }
 
+    //backend get
     const handleClick = (id) => {
+        //handleGet(id)
         setShow(true);
         setListId(id);
     }
 
+    //const lists = handleList(userId)
     return (
         <>
         <div style = {{justifyContent: 'center', display: 'flex', flexWrap: 'wrap', gap: '16px'}}>

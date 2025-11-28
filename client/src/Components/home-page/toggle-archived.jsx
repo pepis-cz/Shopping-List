@@ -18,8 +18,8 @@ function Toggle({ users, userId, lists, setLists, show, setShow, listId, setList
                     users = {users} 
                     userId = {userId} 
                     lists = {lists} 
-                    setLists = {setLists} 
-                    condition = {false} 
+                    condition = {false}
+                    setLists = {setLists}  
                     show = {show} 
                     setShow = {setShow} 
                     listId = {listId} 
@@ -29,9 +29,9 @@ function Toggle({ users, userId, lists, setLists, show, setShow, listId, setList
                 <Cards
                     users = {users} 
                     userId = {userId} 
+                    condition = {true}
                     lists = {lists} 
                     setLists = {setLists} 
-                    condition = {true} 
                     show = {show} 
                     setShow = {setShow} 
                     listId = {listId} 

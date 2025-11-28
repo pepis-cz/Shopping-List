@@ -5,6 +5,8 @@ function Unlink({ members, userId, id, setLists, setShow }) {
     const [member, setMember] = useState(members);
 
     const handleDelete = () => {
+        //const members = filter
+        //handleUpdate(userId, filter)
             setMember(prev => {
                 const newMember = prev.filter(item => item !== userId);
                 setLists(prev => prev.map(item => item._id === id ? {...item, members: newMember} : item));

@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import ShoppingList from '../shopping-list/shopping-list';
 
-function AddList({ lists, setLists, userId, users, show, setShow, listId, setListId }) {
+function AddList({ users, userId, lists, setLists, show, setShow, listId, setListId }) {
 
     const handleAdd = () => {
         const newList = {
@@ -16,6 +16,7 @@ function AddList({ lists, setLists, userId, users, show, setShow, listId, setLis
         };
 
         setLists(prev => [...prev, newList]);
+        //handleCreate(userId);
         setShow(true);
         setListId(newList._id);
     }

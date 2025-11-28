@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button'
 
 function Archive({ archived, setValue }) {
+
     const handleClick = () => {
         setValue(prev => ({...prev, archived: !prev.archived}));
     }
