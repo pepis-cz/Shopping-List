@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Render from './item-render'
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import { customAlphabet } from 'nanoid';
 
 function Body({ items, setValue }) {
 
@@ -13,7 +14,7 @@ function Body({ items, setValue }) {
     const handleCreate = () => {
         setEditingId(null);
         const newItem = {
-            _id: array.length ? Math.max(...array.map((item) => item._id)) + 1 : 1,
+            _id: customAlphabet("0123456789abcdef", 24)(),
             name: null,
             status: false
         }

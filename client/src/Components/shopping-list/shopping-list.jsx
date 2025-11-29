@@ -2,16 +2,32 @@ import Header from "./header";
 import Footer from "./footer/footer";
 import Body from "./body/body";
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { sListContext } from "../provider/sList";
 
-function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow, setListId }) {
+function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow, serverData }) {
 
+    const { handlerMap } = useContext(sListContext);
+
+    //render data v dashboardu
     const [value, setValue] = useState(shopList);
 
-    //handleUpdate(value, userId)
     const handleClose = () => {
-        setLists(prev => prev.map(item => item._id === value._id ? value : item));
-        setShow(false);
+        if (!serverData) {
+            setLists(prev => prev.map(item => item._id === value._id ? value : item));
+            setShow(false);
+        }else{
+            const object = value;
+
+            async () => {
+                const result = await handlerMap.handleUpdate(object);
+
+                if (result.ok) {
+                    setLists(result.data.cards);
+                    setShow(false);
+                }
+            }
+        }
     }
 
     return (
@@ -38,6 +54,7 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
                 setShow = {setShow}
                 handleClose = {handleClose}
                 setValue = {setValue}
+                serverData = {serverData}
             />
         </Modal>
     )

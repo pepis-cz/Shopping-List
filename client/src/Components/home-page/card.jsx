@@ -2,30 +2,57 @@ import ShoppingList from '../shopping-list/shopping-list'
 import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
+import { useContext } from 'react'
+import { sListContext } from '../provider/sList'
 
-function Cards({ users, userId, lists, setLists, condition, show, setShow, listId, setListId }) {
+function Cards({ users, userId, lists, setLists, condition, show, setShow, listId, setListId, serverData }) {
 
-    //const items = map jak line 12-14
-    //
-    //handleUpdate(dtoIn)
-    const handleStatus = (id) => {
-        setLists(prev => {
-            return prev.map(
-                obj => ({...obj, items: obj.items.map(
-                    item => item._id === id ? {...item, status: !item.status} : item
-                )})
-            )
-        });
+    const { handlerMap } = useContext(sListContext);
+
+    const handleStatus = (itm, obj) => {
+        if(!serverData) {
+            setLists(prev => {
+                return prev.map(
+                    obj => ({...obj, items: obj.items.map(
+                        item => item._id === itm ? {...item, status: !item.status} : item
+                    )})
+                )
+            });
+        }else{
+            const update = {
+                _id: obj,
+                items: [
+                    {
+                        _id: itm, 
+                        status: true
+                    }
+                ]
+            }
+            async () => {
+                const result = await handlerMap.handleUpdate(update);
+
+                if (result.ok) {
+                    setLists(result.data.cards);
+                }
+            }
+        }
     }
 
-    //backend get
     const handleClick = (id) => {
-        //handleGet(id)
-        setShow(true);
-        setListId(id);
+        if(!serverData) {
+            setListId(id);
+            setShow(true);
+        }else{
+            async () => {
+                const result = await handlerMap.handleGet({_id: id});
+                if (result.ok) {
+                    setListId(result.data.list);
+                    setShow(true);
+                }
+            }
+        }
     }
 
-    //const lists = handleList(userId)
     return (
         <>
         <div style = {{justifyContent: 'center', display: 'flex', flexWrap: 'wrap', gap: '16px'}}>
@@ -66,7 +93,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                                                 <ListGroup.Item style = {{display: "flex"}}>
                                                     <Button variant = 'light' style = {{background: 'transparent', marginRight: '5px'}} onClick = {(e) => {
                                                         e.stopPropagation();
-                                                        handleStatus(item._id);
+                                                        handleStatus(item._id, obj._id);
                                                     }}>
                                                         <i className = 'bi bi-square'/>
                                                     </Button>
@@ -116,7 +143,6 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                             setLists = {setLists}
                             show = {show}
                             setShow = {setShow}
-                            setListId = {setListId}
                         />
                     }
                 </div>

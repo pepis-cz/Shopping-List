@@ -5,7 +5,7 @@ import Unlink from './unlink';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-function Footer({ archived, users, members, userId, owner, id, setLists, setShow, handleClose, setValue }) {
+function Footer({ archived, users, members, userId, owner, id, setLists, setShow, handleClose, setValue, serverData }) {
 
     return(
         <Modal.Footer style = {{justifyContent: 'space-between'}}>
@@ -23,6 +23,7 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                         id = {id} 
                         setLists = {setLists}
                         setShow = {setShow}
+                        serverData = {serverData}
                     />
                 ) : (
                     <Unlink 
@@ -30,6 +31,7 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                         userId = {userId} 
                         id = {id}
                         setLists = {setLists}
+                        serverData = {serverData}
                     />
                 )}
 

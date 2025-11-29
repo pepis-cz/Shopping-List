@@ -1,5 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ShoppingListProvider from './Components/provider/sList';
 import './App.css';
 
 import Dashboard from './Components/home-page/dashboard';
@@ -9,40 +10,39 @@ function App() {
   const mockData = {
     users: [
       {
-        _id: '0',
+        _id: 'c1f11786edcdf552252ab3d2',
         email: 'a@seznam.cz'
       },
       {
-        _id: '1',
+        _id: '955d09a81bdbe845fc885265',
         email: 'b@seznam.cz'
       },
       {
-        _id: '2',
+        _id: 'd97bf1427de1ae849b844e5e',
         email: 'c@seznam.cz'
       },
       {
-        _id: '3',
+        _id: '949812cbe22c784c4de72bde',
         email: 'd@seznam.cz'
       }
     ],
 
-    userId: '1',
+    userId: 'd97bf1427de1ae849b844e5e',
   
     shopLists: [
       {
-        _id: '4',
+        _id: '94f7bca7e158fa2d347b6385',
         title: 'skleník',
 
         items: [
           {
-            _id: '5',
             name: 'pivo',
             status: false
           }
         ],
 
-        owner: '2',
-        members: ['3', '1'],
+        owner: '949812cbe22c784c4de72bde',
+        members: ['949812cbe22c784c4de72bde', 'd97bf1427de1ae849b844e5e'],
 
         archived: false
       }
@@ -51,7 +51,9 @@ function App() {
 
   return (
     <>
-      <Dashboard users = {mockData.users} shopLists = {mockData.shopLists} userId = {mockData.userId}/>
+      <ShoppingListProvider>
+        <Dashboard users = {mockData.users} shopLists = {mockData.shopLists} userId = {mockData.userId}/>
+      </ShoppingListProvider>
     </>
   );
 }

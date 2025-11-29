@@ -1,24 +1,37 @@
 import Button from 'react-bootstrap/Button'
-import ShoppingList from '../shopping-list/shopping-list';
+import { customAlphabet } from 'nanoid';
+import { useContext } from 'react'
+import { sListContext } from '../provider/sList'
 
-function AddList({ users, userId, lists, setLists, show, setShow, listId, setListId }) {
+function AddList({ userId, setLists, setShow, setListId, serverData }) {
+
+    const { handlerMap } = useContext(sListContext);
 
     const handleAdd = () => {
-        const newList = {
-            _id: lists.length ? Math.max( ...lists.map(item => item._id)) + 1 : 0,
-            title: '',
+        if(!serverData) {
+            const newList = {
+                _id: customAlphabet("0123456789abcdef", 24)(),
+                title: '',
 
-            items: [],
+                items: [],
 
-            owner: userId,
-            members: [userId],
-            archived: false
-        };
-
-        setLists(prev => [...prev, newList]);
-        //handleCreate(userId);
-        setShow(true);
-        setListId(newList._id);
+                owner: userId,
+                members: [userId],
+                archived: false
+            };
+            setLists(prev => [...prev, newList]);
+            setListId(newList._id);
+            setShow(true);
+        }else{
+            async () => {
+                const result = await handlerMap.handleCreate({_id: userId});
+                if (result.ok) {
+                    setLists(result.data.cards);
+                    setListId(result.data.list);
+                    setShow(true);
+                }
+            }
+        }
     }
 
     return (
@@ -28,19 +41,6 @@ function AddList({ users, userId, lists, setLists, show, setShow, listId, setLis
                     Přidat seznam
                 </Button>
             </div>
-
-            {listId === lists[lists.length-1] &&
-                <ShoppingList
-                    users = {users}
-                    shopList = {lists[lists.length-1]}
-                    userId = {userId}
-                    lists = {lists}
-                    setLists = {setLists}
-                    show = {show}
-                    setShow = {setShow}
-                    setListId = {setListId}
-                />
-            }
         </>
     )
 }
