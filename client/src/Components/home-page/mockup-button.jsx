@@ -24,7 +24,7 @@ function MockupButton({ serverData, setServerData, setLists, setListId }) {
     return (
         <div style = {{display: 'flex'}}>
             <p>mockup data</p>
-            <Button variant = 'light' style = {{background: 'transparent'}} onClick = {handleToggle}>
+            <Button variant = 'light' size = 'sm' style = {{background: 'transparent'}} onClick = {handleToggle}>
                 {serverData ? <i className = 'bi bi-toggle-on'/> : <i className = 'bi bi-toggle-off'/>}
             </Button>
         </div>

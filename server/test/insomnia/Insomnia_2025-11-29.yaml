@@ -1,0 +1,365 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1760705068354
+  modified: 1760705068354
+  description: ""
+collection:
+  - name: User
+    meta:
+      id: fld_345a4c5701c8475a8c4b55e29f5d90de
+      created: 1764349824078
+      modified: 1764360865327
+      sortKey: -1764359233209
+      description: ""
+    children:
+      - url: http://localhost:8888/user/create
+        name: /user/create
+        meta:
+          id: req_6640b3eb69914478ad2d60fe38136f6a
+          created: 1764350255890
+          modified: 1764359076222
+          isPrivate: false
+          description: ""
+          sortKey: -1764350300311
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "",
+            	"password": "",
+            	"email": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/user/get
+        name: /user/get
+        meta:
+          id: req_3a788a6d9415416a9838c77e0511f55e
+          created: 1764350307087
+          modified: 1764359055439
+          isPrivate: false
+          description: ""
+          sortKey: -1764350300211
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        parameters:
+          - name: _id
+            value: userId
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/user/name/update
+        name: /user/name/update
+        meta:
+          id: req_b04ed8cb4d344707a4caf1de621013e5
+          created: 1764350328004
+          modified: 1764359061465
+          isPrivate: false
+          description: ""
+          sortKey: -1764350300111
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"_id": "userId",
+            	"name": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/user/email/update
+        name: /user/email/update
+        meta:
+          id: req_795bed77ac684df2b41d934815b40ff9
+          created: 1764350374774
+          modified: 1764359066672
+          isPrivate: false
+          description: ""
+          sortKey: -1764350192898.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"_id": "userId",
+            	"email": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/user/password/update
+        name: /user/password/update
+        meta:
+          id: req_cec415f528fe49dfae127af2b356f86d
+          created: 1764350387241
+          modified: 1764359068603
+          isPrivate: false
+          description: ""
+          sortKey: -1764350139292.25
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"_id": "userId",
+            	"password": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: ShoppingList
+    meta:
+      id: fld_127dabe80b044b45ae8206ec54df78cb
+      created: 1764349834578
+      modified: 1764360956163
+      sortKey: -1764359233259
+      description: ""
+    children:
+      - url: http://localhost:8888/sList/get
+        name: /sList/get
+        meta:
+          id: req_33391d2b0c2648bc98abf7a1de7deef8
+          created: 1764178279279
+          modified: 1764359094324
+          isPrivate: false
+          description: ""
+          sortKey: -1764350085586
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        parameters:
+          - name: _id
+            value: listId
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/sList/create
+        name: /sList/create
+        meta:
+          id: req_f0bc3d0a87e44bc8b7ed84e859e6233a
+          created: 1764349745682
+          modified: 1764359084128
+          isPrivate: false
+          description: ""
+          sortKey: -1764350085686
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"_id": "userId"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/sList/update
+        name: /sList/update
+        meta:
+          id: req_8e7201a82cb042cf8c85318589c2b25c
+          created: 1764349842845
+          modified: 1764435240590
+          isPrivate: false
+          description: ""
+          sortKey: -1764350085486
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"_id": "listId",
+
+            	"archived": false,
+            	"title": "testing",
+            	"items": [
+            		{
+            			"_id": "b564029b6f3b5510d53c7346ac8e68e5",
+            			"name": "a",
+            			"status": false
+            		}
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/sList/delete
+        name: /sList/delete
+        meta:
+          id: req_70aaec02ff8a4727bbd5186996b039ad
+          created: 1764349981624
+          modified: 1764357126015
+          isPrivate: false
+          description: ""
+          sortKey: -1764350085386
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"user_Id": "",
+            	"list_Id": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8888/sList/list
+        name: /sList/list
+        meta:
+          id: req_e5db7fcd72674b5891f5fc76209e8c42
+          created: 1764350131984
+          modified: 1764359114317
+          isPrivate: false
+          description: ""
+          sortKey: -1764350085286
+        method: GET
+        parameters:
+          - name: _id
+            value: userId
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1760707568679
+    modified: 1761311977364
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1760707568677
+    modified: 1764361116166
+    isPrivate: false
