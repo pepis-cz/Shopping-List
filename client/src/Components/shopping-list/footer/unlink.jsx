@@ -12,7 +12,6 @@ function Unlink({ members, userId, id, setLists, setShow }) {
                 setLists(prev => prev.map(item => item._id === id ? {...item, members: newMember} : item));
                 return newMember;
             });
-        setShow(false);
     }
 
     return (
@@ -21,7 +20,7 @@ function Unlink({ members, userId, id, setLists, setShow }) {
         }}
             variant = 'light'
             size = 'lg'
-            onClick = {() => handleDelete(userId)}
+            onClick = {handleDelete}
         >
             <i className = 'bi bi-node-minus'/>
         </Button>

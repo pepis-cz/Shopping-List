@@ -8,11 +8,10 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
 
     const [value, setValue] = useState(shopList);
 
+    //handleUpdate(value, userId)
     const handleClose = () => {
         setLists(prev => prev.map(item => item._id === value._id ? value : item));
-        //handleUpdate(value, userId)
         setShow(false);
-        setListId(null);
     }
 
     return (

@@ -22,6 +22,7 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                     <Delete 
                         id = {id} 
                         setLists = {setLists}
+                        setShow = {setShow}
                     />
                 ) : (
                     <Unlink 
@@ -29,7 +30,6 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                         userId = {userId} 
                         id = {id}
                         setLists = {setLists}
-                        setShow = {setShow}
                     />
                 )}
 
