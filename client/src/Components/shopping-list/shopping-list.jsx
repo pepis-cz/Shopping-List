@@ -11,13 +11,13 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
 
     const [value, setValue] = useState(shopList);
 
-    const handleClose = () => {
+    const handleClose = async () => {
         if (!serverData) {
             setLists(prev => prev.map(item => item._id === value._id ? value : item));
             setShow(false);
         }else{
             const object = value;
-            const result = handlerMap.handleUpdate(object);
+            const result = await handlerMap.handleUpdate(object);
 
             if (result.ok) {
                 setLists(result.data.cards);

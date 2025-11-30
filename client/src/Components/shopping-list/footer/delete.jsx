@@ -13,12 +13,12 @@ function Delete({ id, setLists, setShow, serverData }) {
         setWarn(true);
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         if (!serverData) {
             setShow(false);
             setLists(prev => prev.filter((item) => item._id !== id));
         }else{
-            const result = handlerMap.handleDelete({_id: id});
+            const result = await handlerMap.handleDelete({_id: id});
             if (result.ok) {
                 setShow(false);
                 setLists(result.data.cards);

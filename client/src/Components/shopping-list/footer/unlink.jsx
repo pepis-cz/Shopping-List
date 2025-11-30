@@ -8,7 +8,7 @@ const { handlerMap } = useContext(sListContext);
 
     const [member, setMember] = useState(members);
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (!serverData) {
             setShow(false);
             setMember(prev => {
@@ -27,7 +27,7 @@ const { handlerMap } = useContext(sListContext);
                 members: [member]
             }
             
-            const result = handlerMap.handleUpdate({object: object});
+            const result = await handlerMap.handleUpdate({object: object});
             if (result.ok) {
                 setShow(false);
                 setLists(result.data.cards);

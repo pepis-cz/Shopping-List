@@ -7,7 +7,7 @@ function AddList({ userId, setLists, setShow, setListId, serverData }) {
 
     const { handlerMap } = useContext(sListContext);
 
-    const handleAdd = () => {
+    const handleAdd = async () => {
         if(!serverData) {
             const newList = {
                 _id: customAlphabet("0123456789abcdef", 24)(),
@@ -23,7 +23,9 @@ function AddList({ userId, setLists, setShow, setListId, serverData }) {
             setListId(newList._id);
             setShow(true);
         }else{
-            const result = handlerMap.handleCreate({_id: userId});
+            const result = await handlerMap.handleCreate({_id: userId});
+
+            console.log(result);
             if (result.ok) {
                 setLists(result.data.cards);
                 setListId(result.data.list);

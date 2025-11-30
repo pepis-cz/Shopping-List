@@ -18,7 +18,6 @@ function ShoppingListProvider({ children }) {
         });
 
         const result = await FetchHelper.sList.create(dtoIn);
-
         setShListDto((curr) => {
             if (result.ok) {
                 return {
@@ -37,7 +36,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
     }
 
     async function handleGet(dtoIn) {
@@ -64,7 +63,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
     }
 
     async function handleUpdate(dtoIn) {
@@ -91,7 +90,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
     }
 
     async function handleDelete(dtoIn) {
@@ -117,7 +116,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
     }
 
     async function handleList(dtoIn) {
@@ -126,7 +125,6 @@ function ShoppingListProvider({ children }) {
         });
 
         const result = await FetchHelper.sList.list(dtoIn);
-        console.log(result);
         setShListDto((curr) => {
             if (result.ok) {
                 return {
@@ -143,12 +141,14 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
     }
 
+    /*
     useEffect(() => {
         handleList(user);
     },[user])
+    */
 
     const value = {
         ...shListDto,

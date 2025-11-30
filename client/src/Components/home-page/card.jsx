@@ -9,7 +9,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
 
     const { handlerMap } = useContext(sListContext);
 
-    const handleStatus = (itm, obj) => {
+    const handleStatus = async (itm, obj) => {
         if(!serverData) {
             setLists(prev => {
                 return prev.map(
@@ -28,7 +28,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                     }
                 ]
             }
-            const result = handlerMap.handleUpdate(update);
+            const result = await handlerMap.handleUpdate(update);
 
             if (result.ok) {
                 setLists(result.data.cards);
@@ -36,12 +36,12 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
         }
     }
 
-    const handleClick = (id) => {
+    const handleClick = async (id) => {
         if(!serverData) {
             setListId(id);
             setShow(true);
         }else{
-            const result = handlerMap.handleGet({_id: id});
+            const result = await handlerMap.handleGet({_id: id});
             if (result.ok) {
                 setListId(result.data.list);
                 setShow(true);
