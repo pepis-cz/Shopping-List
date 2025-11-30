@@ -36,6 +36,7 @@ function App() {
 
         items: [
           {
+            _id: 'cb3f69843ea2906109230915',
             name: 'pivo',
             status: false
           }

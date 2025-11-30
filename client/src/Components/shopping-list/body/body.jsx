@@ -15,7 +15,7 @@ function Body({ items, setValue }) {
         setEditingId(null);
         const newItem = {
             _id: customAlphabet("0123456789abcdef", 24)(),
-            name: null,
+            name: '',
             status: false
         }
 

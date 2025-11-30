@@ -21,9 +21,9 @@ function MockupButton({ setLists, setListId, shopLists, userId }) {
     }
 
     return (
-        <div style = {{display: 'flex'}}>
-            <p>mockup data</p>
-            <Button variant = 'light' size = 'lg' style = {{background: 'transparent'}} onClick = {handleToggle}>
+        <div style = {{display: 'flex', justifyContent: 'center'}}>
+            <p style = {{marginTop: '5px'}}>server data (cd server + node app)</p>
+            <Button variant = 'light' style = {{background: 'transparent', width: '40px', height: '40px'}} onClick = {handleToggle}>
                 {serverData ? <i className = 'bi bi-toggle2-on'/> : <i className = 'bi bi-toggle2-off'/>}
             </Button>
         </div>
