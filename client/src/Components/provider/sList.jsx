@@ -1,11 +1,12 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState } from 'react'
 
 import FetchHelper from "../../fetch";
 
 export const sListContext = createContext();
 
 function ShoppingListProvider({ children }) {
-    const user = 'd97bf1427de1ae849b844e5e'
+    const [serverData, setServerData] = useState(false);
+    const user = 'd97bf1427de1ae849b844e5e';
     const [shListDto, setShListDto] = useState({
         state: "ready",
         data: null,
@@ -18,13 +19,13 @@ function ShoppingListProvider({ children }) {
         });
 
         const result = await FetchHelper.sList.create(dtoIn);
+
         setShListDto((curr) => {
             if (result.ok) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {cards: [ curr.data.cards ? [...curr.data.cards, result.data] : [result.data] ], list: result.data._id},
-                    error: null
+                    data: result.data, 
                 };
 
             }else{
@@ -36,7 +37,11 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
+        return { 
+            ok: result.ok,
+            data: result.ok ? result.data : undefined,  
+            error: result.ok ? undefined : result.data 
+        };
     }
 
     async function handleGet(dtoIn) {
@@ -51,19 +56,22 @@ function ShoppingListProvider({ children }) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {list: result.data._id}
+                    data: result.data
                 }
 
             }else{
                 return {
                     ...curr,
                     state: 'error',
-                    data: result.data
+                    error: result.data
                 }
             }
         })
 
-        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
+        return { 
+            ok: result.ok,
+            data: result.ok ? result.data : undefined, 
+            error: result.ok ? undefined : result.data };
     }
 
     async function handleUpdate(dtoIn) {
@@ -78,19 +86,23 @@ function ShoppingListProvider({ children }) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {cards: curr.data.cards.map(item => item.id === dtoIn.id ? result.data : item), list: null}
+                    data: result.data, 
                 }
 
             }else{
                 return {
                     ...curr,
                     state: 'error',
-                    data: result.data
+                    error: result.data
                 }
             }
         })
 
-        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
+        return { 
+            ok: result.ok, 
+            data: result.ok ? result.data : undefined, 
+            error: result.ok ? undefined : result.data
+        }
     }
 
     async function handleDelete(dtoIn) {
@@ -104,19 +116,23 @@ function ShoppingListProvider({ children }) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {cards: curr.data.cards.filter(item => item.id !== dtoIn), list: null}
+                    data: result.data
                 }
 
             }else{
                 return {
                     ...curr,
                     state: 'error',
-                    data: result.data
+                    error: result.data
                 }
             }
         })
 
-        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
+        return { 
+            ok: result.ok, 
+            data: result.ok ? result.data : undefined, 
+            error: result.ok ? undefined : result.data 
+        };
     }
 
     async function handleList(dtoIn) {
@@ -130,7 +146,8 @@ function ShoppingListProvider({ children }) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {cards: result.data, list: null}
+                    cards: result.data,
+                    list: null
                 }
             }else{
                 return {
@@ -141,18 +158,18 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, data: shListDto, error: result.ok ? undefined : result.data };
+        return { 
+            ok: result.ok, 
+            data: result.ok ? result.data : undefined, 
+            error: result.ok ? undefined : result.data 
+        };
     }
-
-    /*
-    useEffect(() => {
-        handleList(user);
-    },[user])
-    */
 
     const value = {
         ...shListDto,
         user,
+        serverData,
+        setServerData,
         handlerMap: {
             handleCreate,
             handleGet,

@@ -3,9 +3,9 @@ import Modal from 'react-bootstrap/Modal'
 import { useState, useContext } from 'react'
 import { sListContext } from '../../provider/sList';
 
-function Delete({ id, setLists, setShow, serverData }) {
+function Delete({ id, setLists, setShow }) {
 
-    const { handlerMap } = useContext(sListContext);
+    const { handlerMap, serverData } = useContext(sListContext);
 
     const [warn, setWarn] = useState(false);
 
@@ -21,7 +21,7 @@ function Delete({ id, setLists, setShow, serverData }) {
             const result = await handlerMap.handleDelete({_id: id});
             if (result.ok) {
                 setShow(false);
-                setLists(result.data.cards);
+                setLists(prev => prev.filter(item => item._id !== id));
             }
         }
     }

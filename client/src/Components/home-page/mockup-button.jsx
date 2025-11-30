@@ -2,22 +2,22 @@ import Button from 'react-bootstrap/Button'
 import { useContext } from 'react'
 import { sListContext } from '../provider/sList'
 
-function MockupButton({ serverData, setServerData, setLists, setListId, shopLists, userId, lists }) {
+function MockupButton({ setLists, setListId, shopLists, userId }) {
 
-    const { handlerMap } = useContext(sListContext);
+    const { handlerMap, serverData, setServerData } = useContext(sListContext);
     
     const handleToggle = async () => {
-        if(!serverData) {
+        setServerData(!serverData);
+        if(serverData === false) {
             const result = await handlerMap.handleList({_id: userId});
             if (result.ok) {
-                setLists(result.data.cards);
-                setListId(result.data.list);
+                setLists(result.data);
+                setListId(null);
             }
         }else{
-            setListId(null);
             setLists(shopLists);
+            setListId(null);
         }
-        setServerData(prev => !prev);
     }
 
     return (

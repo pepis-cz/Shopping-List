@@ -2,9 +2,9 @@ import Button from 'react-bootstrap/Button'
 import { useState, useContext } from 'react'
 import { sListContext } from '../../provider/sList';
 
-function Unlink({ members, userId, id, setLists, setShow, serverData }) {
+function Unlink({ members, userId, id, setLists, setShow }) {
 
-const { handlerMap } = useContext(sListContext);
+const { handlerMap, serverData } = useContext(sListContext);
 
     const [member, setMember] = useState(members);
 
@@ -30,7 +30,7 @@ const { handlerMap } = useContext(sListContext);
             const result = await handlerMap.handleUpdate({object: object});
             if (result.ok) {
                 setShow(false);
-                setLists(result.data.cards);
+                setLists(prev => prev.map(item => item._id === id ? {...item, members: member} : item));
             }
         }
     }

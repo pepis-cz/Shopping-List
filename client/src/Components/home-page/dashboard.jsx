@@ -1,13 +1,11 @@
 import Toggle from './toggle-archived';
 import MockupButton from './mockup-button';
 import AddList from './add-list';
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 
 function Dashboard({ users, shopLists, userId }) {
 
-    const [serverData, setServerData] = useState(false);
     const [show, setShow] = useState(false);
-
     const [lists, setLists] = useState(shopLists);
     const [listId, setListId] = useState(null);
 
@@ -18,13 +16,10 @@ function Dashboard({ users, shopLists, userId }) {
             </div>
 
             <MockupButton
-                serverData={serverData}
-                setServerData={setServerData}
                 setLists={setLists}
                 setListId={setListId}
                 shopLists={shopLists}
                 userId={userId}
-                lists ={lists}
             />
 
             <AddList
@@ -32,7 +27,6 @@ function Dashboard({ users, shopLists, userId }) {
                 setShow = {setShow}
                 setLists = {setLists}
                 setListId = {setListId}
-                serverData = {serverData}
             />
 
             <Toggle 
@@ -47,8 +41,6 @@ function Dashboard({ users, shopLists, userId }) {
 
                 listId = {listId}
                 setListId = {setListId}
-
-                serverData = {serverData}
             />
 
             <div style = {{marginBottom: '50px'}}></div>

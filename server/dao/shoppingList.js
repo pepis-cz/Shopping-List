@@ -68,10 +68,7 @@ async function list(id) {
     try {
         const collection = await filePath();
 
-        const result =  await collection.find(
-            {"members": id},
-            {projection: {"title": 1, "archived": 1, "items": 1, "_id": 0 }}
-        );
+        const result =  await collection.find({"members": id});
 
         return result.toArray();
     }

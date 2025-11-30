@@ -3,9 +3,9 @@ import { customAlphabet } from 'nanoid';
 import { useContext } from 'react'
 import { sListContext } from '../provider/sList'
 
-function AddList({ userId, setLists, setShow, setListId, serverData }) {
+function AddList({ userId, setLists, setShow, setListId }) {
 
-    const { handlerMap } = useContext(sListContext);
+    const { handlerMap, serverData, user } = useContext(sListContext);
 
     const handleAdd = async () => {
         if(!serverData) {
@@ -24,11 +24,9 @@ function AddList({ userId, setLists, setShow, setListId, serverData }) {
             setShow(true);
         }else{
             const result = await handlerMap.handleCreate({_id: userId});
-
-            console.log(result);
             if (result.ok) {
-                setLists(result.data.cards);
-                setListId(result.data.list);
+                setLists(prev => [...prev, result.data]);
+                setListId(result.data._id);
                 setShow(true);
             }
         }
