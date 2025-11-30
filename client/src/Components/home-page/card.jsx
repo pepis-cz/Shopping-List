@@ -28,12 +28,10 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                     }
                 ]
             }
-            async () => {
-                const result = await handlerMap.handleUpdate(update);
+            const result = handlerMap.handleUpdate(update);
 
-                if (result.ok) {
-                    setLists(result.data.cards);
-                }
+            if (result.ok) {
+                setLists(result.data.cards);
             }
         }
     }
@@ -43,12 +41,10 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
             setListId(id);
             setShow(true);
         }else{
-            async () => {
-                const result = await handlerMap.handleGet({_id: id});
-                if (result.ok) {
-                    setListId(result.data.list);
-                    setShow(true);
-                }
+            const result = handlerMap.handleGet({_id: id});
+            if (result.ok) {
+                setListId(result.data.list);
+                setShow(true);
             }
         }
     }
@@ -56,9 +52,10 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
     return (
         <>
         <div style = {{justifyContent: 'center', display: 'flex', flexWrap: 'wrap', gap: '16px'}}>
-            {lists.filter(item => ( condition ? item.archived === false && item.members.includes(userId) : item.members.includes(userId) )).map(obj => (
-                <div>
-                    <Card style={{width: '300px', minHeight: '130px'}} onClick = {() => handleClick(obj._id)} key = {obj._id}>
+            {lists ? (
+            lists.filter(item => ( condition ? item.archived === false && item.members.includes(userId) : item.members.includes(userId) )).map(obj => (
+                <div key = {obj._id}>
+                    <Card style={{width: '300px', minHeight: '130px'}} onClick = {() => handleClick(obj._id)}>
                         <Card.Header style = {{
                                 maxWidth: '300px', 
                                 display: 'flex', 
@@ -146,7 +143,9 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                         />
                     }
                 </div>
-            ))}
+            ))
+            ) : <p>žádné seznamy k úpravám</p>
+            }
             </div>
         </>
     )

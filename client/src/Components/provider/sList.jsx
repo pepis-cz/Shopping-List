@@ -5,6 +5,7 @@ import FetchHelper from "../../fetch";
 export const sListContext = createContext();
 
 function ShoppingListProvider({ children }) {
+    const user = 'd97bf1427de1ae849b844e5e'
     const [shListDto, setShListDto] = useState({
         state: "ready",
         data: null,
@@ -36,7 +37,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
     }
 
     async function handleGet(dtoIn) {
@@ -90,7 +91,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
     }
 
     async function handleDelete(dtoIn) {
@@ -104,7 +105,7 @@ function ShoppingListProvider({ children }) {
                 return {
                     ...curr,
                     state: 'ready',
-                    data: {cards: curr.data.cards.filter(item => item.id != id), list: null}
+                    data: {cards: curr.data.cards.filter(item => item.id !== dtoIn), list: null}
                 }
 
             }else{
@@ -116,7 +117,7 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
     }
 
     async function handleList(dtoIn) {
@@ -125,6 +126,7 @@ function ShoppingListProvider({ children }) {
         });
 
         const result = await FetchHelper.sList.list(dtoIn);
+        console.log(result);
         setShListDto((curr) => {
             if (result.ok) {
                 return {
@@ -141,11 +143,16 @@ function ShoppingListProvider({ children }) {
             }
         })
 
-        return { ok: result.ok, error: result.ok ? undefined : result.data };
+        return { ok: result.ok, data: result.data, error: result.ok ? undefined : result.data };
     }
+
+    useEffect(() => {
+        handleList(user);
+    },[user])
 
     const value = {
         ...shListDto,
+        user,
         handlerMap: {
             handleCreate,
             handleGet,

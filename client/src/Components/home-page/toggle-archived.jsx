@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Cards from './card';
 import { useState } from 'react'
 
-function Toggle({ users, userId, lists, setLists, show, setShow, listId, setListId}) {
+function Toggle({ users, userId, lists, setLists, show, setShow, listId, setListId, serverData }) {
 
     const [toggle, setToggle] = useState(false);
     const handleToggle = () => setToggle(!toggle);
@@ -24,6 +24,7 @@ function Toggle({ users, userId, lists, setLists, show, setShow, listId, setList
                     setShow = {setShow} 
                     listId = {listId} 
                     setListId = {setListId}
+                    serverData = {serverData}
                 />
             ) : (
                 <Cards
@@ -36,6 +37,7 @@ function Toggle({ users, userId, lists, setLists, show, setShow, listId, setList
                     setShow = {setShow} 
                     listId = {listId} 
                     setListId = {setListId}
+                    serverData = {serverData}
                 />
             )}
         </>

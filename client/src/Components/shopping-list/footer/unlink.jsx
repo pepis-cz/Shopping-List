@@ -26,13 +26,11 @@ const { handlerMap } = useContext(sListContext);
                 _id: id,
                 members: [member]
             }
-
-            async () => {
-                const result = handlerMap.handleUpdate({object: object});
-                if (result.ok) {
-                    setShow(false);
-                    setLists(result.data.cards);
-                }
+            
+            const result = handlerMap.handleUpdate({object: object});
+            if (result.ok) {
+                setShow(false);
+                setLists(result.data.cards);
             }
         }
     }

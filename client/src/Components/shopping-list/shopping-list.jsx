@@ -9,7 +9,6 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
 
     const { handlerMap } = useContext(sListContext);
 
-    //render data v dashboardu
     const [value, setValue] = useState(shopList);
 
     const handleClose = () => {
@@ -18,14 +17,11 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
             setShow(false);
         }else{
             const object = value;
+            const result = handlerMap.handleUpdate(object);
 
-            async () => {
-                const result = await handlerMap.handleUpdate(object);
-
-                if (result.ok) {
-                    setLists(result.data.cards);
-                    setShow(false);
-                }
+            if (result.ok) {
+                setLists(result.data.cards);
+                setShow(false);
             }
         }
     }

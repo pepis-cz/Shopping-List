@@ -23,13 +23,11 @@ function AddList({ userId, setLists, setShow, setListId, serverData }) {
             setListId(newList._id);
             setShow(true);
         }else{
-            async () => {
-                const result = await handlerMap.handleCreate({_id: userId});
-                if (result.ok) {
-                    setLists(result.data.cards);
-                    setListId(result.data.list);
-                    setShow(true);
-                }
+            const result = handlerMap.handleCreate({_id: userId});
+            if (result.ok) {
+                setLists(result.data.cards);
+                setListId(result.data.list);
+                setShow(true);
             }
         }
     }

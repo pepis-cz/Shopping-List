@@ -31,6 +31,7 @@ function Footer({ archived, users, members, userId, owner, id, setLists, setShow
                         userId = {userId} 
                         id = {id}
                         setLists = {setLists}
+                        setShow = {setShow}
                         serverData = {serverData}
                     />
                 )}

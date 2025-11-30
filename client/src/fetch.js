@@ -1,4 +1,4 @@
-const baseUri = 'http://localhost:3000'
+const baseUri = 'http://localhost:8888'
 
 async function Call (baseUri, useCase, dtoIn, method) {
     let response;

@@ -1,24 +1,12 @@
 import Toggle from './toggle-archived';
 import MockupButton from './mockup-button';
 import AddList from './add-list';
-import { useState, useContext } from 'react'
-import { sListContext } from '../provider/sList';
+import { useState } from 'react'
 
 function Dashboard({ users, shopLists, userId }) {
 
-    const { handlerMap } = useContext(sListContext); 
-
     const [serverData, setServerData] = useState(false);
     const [show, setShow] = useState(false);
-
-    async () => {
-        const result = await handlerMap.handleList({_id: userId});
-
-        if (result.ok) {
-            setLists(result.data.cards);
-            setListId(result.data.list);
-        }
-    }
 
     const [lists, setLists] = useState(shopLists);
     const [listId, setListId] = useState(null);
@@ -32,6 +20,11 @@ function Dashboard({ users, shopLists, userId }) {
             <MockupButton
                 serverData={serverData}
                 setServerData={setServerData}
+                setLists={setLists}
+                setListId={setListId}
+                shopLists={shopLists}
+                userId={userId}
+                lists ={lists}
             />
 
             <AddList

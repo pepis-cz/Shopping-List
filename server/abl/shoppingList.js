@@ -9,7 +9,7 @@ addFormats(ajv);
 
 async function createAbl (req, res) {
     try {
-        const dtoIn = req.body;
+        const dtoIn = req.body._id;
         const shoppingList = {
             title: "",
             owner: dtoIn,

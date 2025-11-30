@@ -18,16 +18,12 @@ function Delete({ id, setLists, setShow, serverData }) {
             setShow(false);
             setLists(prev => prev.filter((item) => item._id !== id));
         }else{
-            async () => {
-                const result = handlerMap.handleDelete({_id: id});
-                if (result.ok) {
-                    setShow(false);
-                    setLists(result.data.cards);
-                    return;
-                }
+            const result = handlerMap.handleDelete({_id: id});
+            if (result.ok) {
+                setShow(false);
+                setLists(result.data.cards);
             }
         }
-        return;
     }
 
     return (
