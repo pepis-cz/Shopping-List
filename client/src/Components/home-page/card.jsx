@@ -148,7 +148,7 @@ function Cards({ users, userId, lists, setLists, condition, show, setShow, listI
                             }
                         </div>
                     ))
-                ) : <p>žádné seznamy k úpravám</p>}
+                ) : <p>prázdná stránka, přidejte si první stránku</p>}
             </div>
         </>
     )

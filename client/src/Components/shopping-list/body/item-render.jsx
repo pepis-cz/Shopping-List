@@ -21,7 +21,7 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
     };
 
     const saveName = () => setEditingId(null);
-
+    
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             saveName();
@@ -61,7 +61,6 @@ function Render({ array, setArray, editingId, setEditingId, boolean, setValue })
                                     })
                                 }
                             }
-
                             onBlur = {saveName}
                             onKeyDown = {handleKeyDown}
                             autoFocus
