@@ -5,7 +5,7 @@ import { sListContext } from '../../provider/sList';
 
 function Delete({ id, setLists, setShow }) {
 
-    const { handlerMap, serverData } = useContext(sListContext);
+    const { handlerMap, serverData, user } = useContext(sListContext);
 
     const [warn, setWarn] = useState(false);
 
@@ -18,7 +18,7 @@ function Delete({ id, setLists, setShow }) {
             setShow(false);
             setLists(prev => prev.filter((item) => item._id !== id));
         }else{
-            const result = await handlerMap.handleDelete({_id: id});
+            const result = await handlerMap.handleDelete({list_Id: id, user_Id: user});
             if (result.ok) {
                 setShow(false);
                 setLists(prev => prev.filter(item => item._id !== id));

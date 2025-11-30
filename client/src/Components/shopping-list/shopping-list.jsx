@@ -5,9 +5,9 @@ import Modal from 'react-bootstrap/Modal'
 import { useState, useContext } from 'react'
 import { sListContext } from "../provider/sList";
 
-function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow, serverData }) {
+function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow }) {
 
-    const { handlerMap } = useContext(sListContext);
+    const { handlerMap, serverData } = useContext(sListContext);
 
     const [value, setValue] = useState(shopList);
 
@@ -20,7 +20,7 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
             const result = await handlerMap.handleUpdate(object);
 
             if (result.ok) {
-                setLists(result.data.cards);
+                setLists(prev => prev.map(item => item._id === result.data._id ? result.data : item));
                 setShow(false);
             }
         }
@@ -50,7 +50,6 @@ function ShoppingList({ users, shopList, userId, lists, setLists, show, setShow,
                 setShow = {setShow}
                 handleClose = {handleClose}
                 setValue = {setValue}
-                serverData = {serverData}
             />
         </Modal>
     )
